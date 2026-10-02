@@ -8,8 +8,8 @@ description: Draft, score, revise, and render a ChoiceCenter Personal Strategic 
 **Status:** stub (2026-10-02). Templates, the build script, and one worked
 example exist. The coaching workflows are not written yet.
 
-Everything this skill points at lives in the `psp-ai` repo, at
-`ai-labs/psp-ai/` in the lossless-monorepo tree. Paths below are relative to
+Everything this skill points at lives in the `hope-ai` repo, at
+`ai-labs/hope-ai/` in the lossless-monorepo tree. Paths below are relative to
 that repo root.
 
 ## What a PSP is

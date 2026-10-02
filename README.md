@@ -1,4 +1,4 @@
-# psp-ai
+# hope-ai
 
 Agent skill, templates, scripts, and reference patterns for the **ChoiceCenter
 Personal Strategic Plan (PSP)**: the 100-day goal document a Leadership Legacy
@@ -12,7 +12,7 @@ shared Google Doc.
 ## Layout
 
 ```
-psp-ai/
+hope-ai/
 ├── templates/
 │   ├── psp-blank.md            the program form, blank
 │   └── goal-block-scored.md    the scored goal block (floors, targets, rules)
