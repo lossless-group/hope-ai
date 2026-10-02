@@ -3,7 +3,8 @@
 
   It keeps every box the program form asks for, and adds the layer that makes
   a goal checkable week to week. The process goals (leading indicators) are
-  scored; the outcome (lagging indicator) is read at Day 0, midpoint, and end.
+  scored weekly; the outcome (lagging indicator) is scored at Day 30, 60, and
+  90 against paced milestones, from a Day 0 baseline.
   The pacing section shows why the process dose should reach the outcome.
   See references/goal-pacing.md for the method and
   references/template-anatomy.md for which parts are the program's.
@@ -14,7 +15,7 @@
 
 ## **HOW I KEEP SCORE**
 
-- **I score the process and read the outcome.** Every goal is scored by what I did this week (the leading indicators), never by what happened as a result. The outcome I want is a reading I take at Day 0, the midpoint, and the end.
+- **I score the process weekly and the outcome monthly.** Each week is scored by what I did (the leading indicators), never by what happened as a result. The outcome I want is scored at Day 30, 60, and 90 against paced milestones, from a Day 0 baseline.
 - **The process is paced to the outcome.** Each goal's weekly dose is set from realistic rates, so that if I keep it, the outcome is within reach.
 - **I layer habits; I don't stack them.** Week 1 starts small. One new habit or one step of dose joins at a time, once the last one is holding.
 - **Every goal has a floor and a target.** The floor is my bad-week minimum, and hitting it counts as a win. The target is a good week.
@@ -39,7 +40,7 @@
 
 <!-- One paragraph: the goal, and what is true by day 100. -->
 
-**The outcome I want (a reading, not a score):** ___ by day 100. <!-- e.g. "15–20 lb down", "$12k a month after tax by month 3". If this goal is purely a process goal, name what it should lead to, or say there's no number. -->
+**The outcome I want:** ___ by day 100, from a Day 0 baseline of ___. <!-- Scored at Day 30, 60, and 90 against the milestones below; never week to week. --> <!-- e.g. "15–20 lb down", "$12k a month after tax by month 3". If this goal is purely a process goal, name what it should lead to, or say there's no number. -->
 
 **How the pace gets there:** <!-- Show the arithmetic from real rates, as ranges. e.g. "Sustained fat loss runs about 1–1.5 lb a week; 14 weeks at that pace is 14–21 lb. Daily post-meal walks, low-carb days, and 3 Zone 2 sessions a week are the levers." Note any doctor sign-off needed. -->
 
@@ -75,7 +76,7 @@ My weekly action plan:
 | Week 4 |  |  |   |
 | Week 5 |  |  |   |
 | Week 6 |  |  |   |
-| Week 7 | **Midpoint readings.** |  |   |
+| Week 7 |  |  |   |
 | Week 8 | **Deload:** floors only. |  |   |
 | Week 9 |  |  |   |
 | Week 10 |  |  |   |
@@ -84,14 +85,18 @@ My weekly action plan:
 
 *Every standard above stays in force for the rest of the 12 weeks. A week's row is what is newly true by the end of it, and the Floor / Target column is the plan.*
 
-| By 30 Days |  |
-| :---- | :---- |
-| By 60 Days |  |
-| By 90 Days |  |
+<!-- The program's milestone table. Each row: the process totals the weekly
+     rows add up to, then the paced outcome expected at that checkpoint. -->
 
-| Reading | Day 0 | Midpoint | End | Expected if I keep the pace |
+| By 30 Days | <!-- process totals -->. **Outcome:** ___ (expected range) |
+| :---- | :---- |
+| By 60 Days | <!-- process totals -->. **Outcome:** ___ (expected range) |
+| By 90 Days | <!-- process totals -->. **Outcome:** ___ (expected range) |
+
+| Outcome | Day 0 | Day 30 | Day 60 | Day 90 |
 | :---- | :---- | :---- | :---- | :---- |
-| ___ |   |   |   |   |
+| ___ (milestone) | baseline | ___ | ___ | ___ |
+| ___ (actual) |   |   |   |   |
 
 #### **___ protocol**
 

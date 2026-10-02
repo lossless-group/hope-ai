@@ -19,12 +19,14 @@ So the plan has two layers:
 
 | Layer | What it is | How it's treated |
 |---|---|---|
-| **Process goals** (leading) | Actions you take | **Scored** every week against a floor and a target |
-| **Outcome** (lagging) | The result you want | **Read**, not scored: measured at Day 0, the midpoint, and the end (monthly for money) |
+| **Process goals** (leading) | Actions you take | **Scored every week** against a floor and a target |
+| **Outcome** (lagging) | The result you want | **Scored at Day 30, 60, and 90** against paced milestones, with Day 0 as the baseline. Never week to week. |
 
 The outcome stays in the plan. It's the reason for the process goals, and
-the readings are how you check the process is the right one. You just don't
-grade a week on it.
+the 30/60/90 checkpoints, which the program's form already asks for ("By 30
+Days / By 60 Days / By 90 Days"), are where you check it. Weekly, it's too
+noisy to grade: a good week of process can show nothing on the scale. Over
+a month, if the process is right, the outcome moves.
 
 ## Two directions, one method
 
@@ -46,8 +48,14 @@ grade a week on it.
    outcome in 100 days, say so and offer either a smaller outcome or a longer
    horizon. Never raise the process dose past what's safe or sustainable to
    force the number.
-5. **Score the process, read the outcome.** The weekly scorecard counts the
-   levers. The outcome goes in a readings table.
+5. **Set the 30/60/90 milestones.** Run the pace forward to each checkpoint
+   and write the expected outcome there, as a range, alongside the process
+   totals. Account for the ramp: early weeks carry a lighter dose, so the
+   first month usually moves less than the last (weight is the exception
+   that runs the other way, since early low-carb drops are mostly water).
+6. **Score the process weekly, the outcome at the checkpoints.** The weekly
+   scorecard counts the levers. The outcome is measured at Day 0 and scored
+   against its milestone at Day 30, 60, and 90.
 
 ### When someone brings a process goal ("walk every day", "call three people a week")
 
@@ -56,9 +64,10 @@ grade a week on it.
 2. **Project a reasonable outcome.** If they keep this process at this dose
    for 100 days, what does the evidence say they can expect? Give a range,
    not a promise: "kept up, this typically means roughly X to Y".
-3. **Offer it as the reading.** That projection becomes the outcome they
-   check at the midpoint and the end. If the readings lag the projection,
-   that's information about the process, not a verdict on the person.
+3. **Make it the milestones.** Split the projection across Day 30, 60, and
+   90; those become the outcome milestones they're scored against. If an
+   outcome lags its milestone, that's information about the process, not a
+   verdict on the person.
 
 ## Layer habits; don't stack them
 
@@ -102,9 +111,11 @@ Pacing depends on rates, so the rates have to be right.
   advice override the plan. Never pace a health goal past safe rates to hit
   a number.
 - **Be conservative with money.** Revenue and capital outcomes depend on
-  other people. Pace the asks and conversations; treat closes as readings.
-- **Recalibrate at the midpoint.** If readings lag the projection, adjust
-  the process or the projection, openly.
+  other people. Pace the asks and conversations weekly; score closes and
+  income only at the monthly checkpoints.
+- **Recalibrate at each checkpoint.** If the outcome misses its Day 30 or
+  Day 60 milestone while the process is on track, adjust the process or the
+  remaining milestones, openly.
 
 ## Worked example: weight
 
@@ -122,8 +133,14 @@ Member: *"I want to lose a lot of weight. Like 30 pounds."*
    - Week 6: add one longer fast a week, if the doctor agrees.
    - Weeks 8 and 12: deload to the floors.
 4. **Scored weekly:** walks, low-carb days, Zone 2 sessions, fast done.
-5. **Read at Day 0 / midpoint / end:** weight, waist, and (if they're
-   getting labs) HbA1c. Midpoint expectation: roughly 8–11 lb down.
+5. **Day 0 baseline, then 30/60/90 milestones:** weight and waist (and
+   HbA1c if they're getting labs, at Day 0 and Day 90). The ramp is light
+   in month 1, but early water loss offsets it:
+
+   | | Day 30 | Day 60 | Day 90 |
+   | :---- | :---- | :---- | :---- |
+   | Weight down (expected range) | 4–7 lb | 9–13 lb | 14–19 lb |
+   | Process totals (cumulative) | 40+ walks, 10+ low-carb days | 80+ walks, 30+ low-carb days, 8+ Zone 2 sessions, 2+ fasts | 120+ walks, 50+ low-carb days, 20+ Zone 2 sessions, 5+ fasts |
 
 ## Worked example: process first
 
@@ -133,6 +150,6 @@ Member: *"I want to call three people from my list every week."*
    their job search.
 2. **Projection:** 3 calls a week for 13 weeks is about 40 conversations.
    If even one in eight turns into an intro, that's roughly five intros.
-3. **Reading:** intros received, checked monthly. If it's zero at the
-   midpoint, the process gets a look (who's on the list, what's asked),
-   not the person.
+3. **Milestones:** about 1–2 intros by Day 30, 3 by Day 60, 5 by Day 90.
+   If Day 60 shows none, the process gets a look (who's on the list, what's
+   asked), not the person.

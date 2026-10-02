@@ -39,12 +39,14 @@ neither asks for nor forbids them; they paste into the Google Doc fine.
   Action column reframed as "By end of week" (cumulative standards, not one-off tasks).
 - **Deload weeks** at 8 and 12.
 - **H4 protocols** under a goal (`#### **Hydration protocol**`, etc.) holding the standards the "What counts" list references.
-- **Outcome and pacing**: the outcome named as a reading, and the arithmetic
-  that paces the process goals toward it (the income math in the example
-  plan is the model).
-- **Readings tables** (biomarkers, income scoreboard): columns for Day 0 /
-  midpoint / end, or month 1–3. These hold the **lagging** indicators, which
-  are read, never scored; the weekly scorecard holds the **leading** ones.
+- **Outcome and pacing**: the outcome named with a Day 0 baseline, and the
+  arithmetic that paces the process goals toward it (the income math in the
+  example plan is the model). The pace sets an expected outcome at each of
+  the program's own **By 30 / 60 / 90 Days** checkpoints.
+- **Outcome tables** (biomarkers, income scoreboard): a Day 0 baseline, then
+  the 30/60/90 checkpoints (or month 1–3). These hold the **lagging**
+  indicators, scored only at the checkpoints; the weekly scorecard holds
+  the **leading** ones.
 
 The reasoning behind all of this is in `goal-pacing.md`.
 

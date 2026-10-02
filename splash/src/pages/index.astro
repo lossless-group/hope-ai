@@ -40,7 +40,7 @@ const inside = [
   {
     day: '02',
     title: 'Goals you can score',
-    body: "Turn the outcome you want into the habits that drive it, paced so that keeping them gets you there. A bad-week floor, a good-week target, and the outcome checked at the midpoint and the end.",
+    body: "Turn the outcome you want into the habits that drive it, paced so that keeping them gets you there. A bad-week floor, a good-week target, and outcome milestones at Day 30, 60, and 90.",
     stamp: 'ready',
     file: 'templates/goal-block-scored.md',
   },
@@ -61,7 +61,7 @@ const inside = [
 ];
 
 const principles = [
-  ['Score the process. Read the outcome.', 'Weight and income are lagging indicators. Fasting days, Zone 2 minutes, and calls made are the leading ones, and the only ones you can do today.'],
+  ['Score the process weekly. The outcome monthly.', 'Weight and income are lagging indicators, scored at Day 30, 60, and 90. Fasting days, Zone 2 minutes, and calls made are the leading ones, scored every week.'],
   ['Paced to where you want to go.', 'Claude uses real rates to set each habit’s weekly dose, so keeping it gets you to the outcome. Bring a process goal instead, and it tells you what to expect.'],
   ['Layer, don’t stack.', 'Start smaller than feels like enough. Add one habit at a time, once the last one holds. Ambition belongs in the outcome, not in Week 1.'],
   ['A floor and a target.', 'The floor is your bad-week minimum, and hitting it counts as a win.'],
@@ -212,8 +212,8 @@ const deload = new Set([8, 12]);
           <h2 class="section__title">Optimism you can <em>measure.</em></h2>
           <p class="section__lede">
             You can want an outcome, but you can only do the process. So the plan scores the
-            habits that lead there, paces them so the outcome is within reach, and checks the
-            outcome itself at the midpoint and the end. A bad week still has a win in it.
+            habits that lead there every week, paces them so the outcome is within reach, and
+            scores the outcome itself at Day 30, 60, and 90. A bad week still has a win in it.
           </p>
           <ol class="weeks" aria-label="Twelve weeks, with deload weeks 8 and 12">
             {weeks.map((w) => (

@@ -31,7 +31,8 @@ unless asked.
   sections are ChoiceCenter's and get pasted into a shared Google Doc. See
   `references/template-anatomy.md` before restructuring a template.
 - **The scoring philosophy is the product.** Process goals (leading
-  indicators) are scored; outcomes (lagging) are read and paced toward;
+  indicators) are scored weekly; outcomes (lagging) are paced to Day 30/60/90
+  milestones and scored only there;
   habits are layered, never stacked. `references/goal-pacing.md` is the
   source of truth; the skill, templates, README, and splash copy restate it
   and must not drift from it.

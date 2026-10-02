@@ -37,13 +37,14 @@ Steps per [Anthropic's help center](https://support.claude.com/en/articles/12512
 Outcomes (weight, income, a finished album) are **lagging indicators**: you
 can want them, but you can't do them. Process goals (fasting days, Zone 2
 minutes, calls made) are the **leading indicators** that drive them. The
-toolkit scores the process every week and reads the outcome at Day 0, the
-midpoint, and the end.
+toolkit scores the process every week, and scores the outcome at Day 30,
+60, and 90 against paced milestones (the program form's own checkpoints).
 
 - Bring an **outcome**, and Claude finds the process goals behind it and
-  **paces** them with realistic rates, so keeping them gets you there.
+  **paces** them with realistic rates, setting where you should be at Day
+  30, 60, and 90.
 - Bring a **process goal**, and Claude **projects** a reasonable outcome if
-  you keep it.
+  you keep it, and splits it across the same checkpoints.
 - Either way, habits are **layered, not stacked**: start small, add one at
   a time. Ambition goes in the outcome, not in Week 1.
 
