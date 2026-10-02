@@ -1,0 +1,6 @@
+.DS_Store
+context-v/extra/
+
+# Build output from scripts/build-psp.sh
+*_20[0-9][0-9]-[0-9][0-9]-[0-9][0-9].html
+*_20[0-9][0-9]-[0-9][0-9]-[0-9][0-9].docx
