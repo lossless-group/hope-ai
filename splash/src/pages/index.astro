@@ -1,0 +1,621 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { STATIC_SEO, REPO_URL, SKILL_ZIP } from '@lib/seo';
+
+const base = import.meta.env.BASE_URL;
+
+const SKILL_RAW =
+  'https://raw.githubusercontent.com/lossless-group/hope-ai/main/context-v/agent-skills/personal-strategic-plan/SKILL.md';
+
+// The one thing a visitor needs: a message they can paste into Claude.
+const PROMPT = `I'm in a ChoiceCenter 100-day program and I'm writing my Personal Strategic Plan (PSP). Please read this toolkit first: ${REPO_URL}
+
+Start with the skill at ${SKILL_RAW} and follow it. Then interview me one goal at a time and help me write a plan I can score every week.`;
+
+// 100 day-ticks around the rising sun. Angles run from the left horizon
+// (180°) over the top to the right horizon (0°).
+const CX = 200, CY = 210, R1 = 150, R2 = 172;
+const ticks = Array.from({ length: 100 }, (_, i) => {
+  const a = Math.PI - (i / 99) * Math.PI;
+  const long = (i + 1) % 10 === 0;
+  const r2 = long ? R2 + 8 : R2;
+  return {
+    i,
+    x1: +(CX + R1 * Math.cos(a)).toFixed(2),
+    y1: +(CY - R1 * Math.sin(a)).toFixed(2),
+    x2: +(CX + r2 * Math.cos(a)).toFixed(2),
+    y2: +(CY - r2 * Math.sin(a)).toFixed(2),
+    long,
+  };
+});
+
+const inside = [
+  {
+    day: '01',
+    title: 'The blank form',
+    body: "The program's PSP, rebuilt as a clean template: your purpose, your stands, each goal's three commitment boxes, twelve weeks of actions, and the 30/60/90 milestones.",
+    stamp: 'ready',
+    file: 'templates/psp-blank.md',
+  },
+  {
+    day: '02',
+    title: 'Goals you can score',
+    body: "An optional layer for each goal: what counts, a bad-week floor, a good-week target, and a few rules. Every week becomes something you can check, not something you hope happened.",
+    stamp: 'ready',
+    file: 'templates/goal-block-scored.md',
+  },
+  {
+    day: '03',
+    title: 'A skill for Claude',
+    body: 'Instructions that teach Claude how a PSP works, so it can interview you, tighten vague goals, and keep the program’s wording intact.',
+    stamp: 'ready',
+    file: 'context-v/agent-skills/personal-strategic-plan/SKILL.md',
+  },
+  {
+    day: '04',
+    title: 'Back to the Google Doc',
+    body: 'When your plan is ready, Claude can hand it back as a formatted document to paste into the cohort’s shared Google Doc, tables and all.',
+    stamp: 'ready',
+    file: 'scripts/build-psp.sh',
+  },
+];
+
+const principles = [
+  ['Inputs, not outcomes.', 'You score what you did this week, never what happened as a result.'],
+  ['A floor and a target.', 'The floor is your bad-week minimum, and hitting it counts as a win.'],
+  ['Many ways count.', 'Each goal lists several actions that qualify, so a travel day still counts.'],
+  ['Never miss twice.', 'One missed day is life. The next day is where the habit is decided.'],
+  ['Rest on purpose.', 'Weeks 8 and 12 are deload weeks: floors only, nothing new.'],
+  ['Two check-ins a day.', 'Morning: what you will do. Evening: what you did. That fills the scorecard.'],
+];
+
+const weeks = Array.from({ length: 12 }, (_, i) => i + 1);
+const deload = new Set([8, 12]);
+---
+
+<BaseLayout title={STATIC_SEO.root.title} description={STATIC_SEO.root.description}>
+  <main>
+    <!-- ─── Hero ─────────────────────────────────────────────────────── -->
+    <section class="hero" id="start">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow">ChoiceCenter · Leadership Legacy · 100 days</p>
+          <h1 class="hero__title">
+            Hope, <em class="gradient-text">with a plan.</em>
+          </h1>
+          <p class="hero__lede">
+            hope.ai is an open toolkit for your Personal Strategic Plan. Give Claude one link,
+            and it helps you write goals you can actually keep, score each week on what you did,
+            and start again the next morning.
+          </p>
+
+          <div class="handoff" data-copy-root>
+            <div class="handoff__head">
+              <span class="handoff__step">Copy this. Paste it into Claude.</span>
+              <button class="btn btn-primary handoff__copy" type="button" data-copy>
+                <span data-copy-label>Copy message</span>
+              </button>
+            </div>
+            <pre class="handoff__prompt" data-copy-text>{PROMPT}</pre>
+          </div>
+
+          <div class="hero__ctas">
+            <a class="btn" href={REPO_URL} target="_blank" rel="noopener">Open the GitHub repo →</a>
+            <a class="hero__more" href="#install">Or install it for every chat</a>
+          </div>
+        </div>
+
+        <figure class="sunrise" aria-label="A sun rising over the horizon, ringed by 100 marks, one for each day.">
+          <svg viewBox="0 0 400 230" role="img">
+            <defs>
+              <linearGradient id="sun-fill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="var(--sun-core)" />
+                <stop offset="1" stop-color="var(--color-accent-hot)" />
+              </linearGradient>
+              <radialGradient id="sun-halo">
+                <stop offset="0" stop-color="var(--sun-glow)" />
+                <stop offset="1" stop-color="transparent" />
+              </radialGradient>
+            </defs>
+            <circle cx="200" cy="210" r="195" fill="url(#sun-halo)" />
+            <g class="sunrise__ticks">
+              {ticks.map((t) => (
+                <line
+                  x1={t.x1} y1={t.y1} x2={t.x2} y2={t.y2}
+                  class:list={['tick', { 'tick--long': t.long }]}
+                  style={`--i:${t.i}`}
+                />
+              ))}
+            </g>
+            <path class="sunrise__sun" d={`M ${CX - 112} ${CY} A 112 112 0 0 1 ${CX + 112} ${CY} Z`} fill="url(#sun-fill)" />
+            <line x1="0" y1={CY} x2="400" y2={CY} class="sunrise__horizon" />
+            <text x="18" y={CY + 18} class="sunrise__label">DAY 1</text>
+            <text x="382" y={CY + 18} class="sunrise__label" text-anchor="end">DAY 100</text>
+          </svg>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ─── Install ──────────────────────────────────────────────────── -->
+    <section class="section" id="install">
+      <div class="container">
+        <p class="folio" data-num="DAY 00">getting started</p>
+        <h2 class="section__title">Two ways in. <em>Both take less than five minutes.</em></h2>
+
+        <div class="ways">
+          <article class="card">
+            <header class="card__head">
+              <h3>Paste the link</h3>
+              <span class="stamp">30 seconds</span>
+            </header>
+            <ol class="steps">
+              <li>Open the Claude app on your Mac or PC and start a new chat.</li>
+              <li>Paste the message above and send it.</li>
+              <li>Answer Claude's questions, one goal at a time.</li>
+            </ol>
+            <p class="card__note">
+              If Claude says it can't open the link, make sure <strong>web search</strong> is turned on
+              for the chat, then send the message again.
+            </p>
+          </article>
+
+          <article class="card">
+            <header class="card__head">
+              <h3>Install the skill</h3>
+              <span class="stamp" data-ink="warm">2 minutes</span>
+            </header>
+            <ol class="steps">
+              <li>
+                <a class="btn btn-primary btn-sm" href={`${base}${SKILL_ZIP}`} download>Download the skill (.zip)</a>
+              </li>
+              <li>In Claude, go to <strong>Settings → Capabilities</strong> and turn on <strong>Code execution and file creation</strong>.</li>
+              <li>Go to <strong>Customize → Skills</strong>, click <strong>+</strong>, then <strong>Create skill → Upload a skill</strong>, and choose the zip. Don't unzip it first.</li>
+              <li>Start a new chat and say: <em>“Let's work on my PSP.”</em></li>
+            </ol>
+            <p class="card__note">
+              Works on Free, Pro, Max, and Team plans. Steps from{' '}
+              <a href="https://support.claude.com/en/articles/12512180-use-skills-in-claude" target="_blank" rel="noopener">Anthropic's help center</a>.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Inside ───────────────────────────────────────────────────── -->
+    <section class="section" id="inside">
+      <div class="container">
+        <p class="folio" data-num="DAY 01">what's inside</p>
+        <h2 class="section__title">Everything the plan needs, <em>nothing it doesn't.</em></h2>
+        <div class="cards">
+          {inside.map((c) => (
+            <article class="card card--index">
+              <header class="card__head">
+                <span class="card__day mono">{c.day}</span>
+                <span class="stamp">{c.stamp}</span>
+              </header>
+              <h3>{c.title}</h3>
+              <p>{c.body}</p>
+              <a class="card__file mono" href={`${REPO_URL}/blob/main/${c.file}`} target="_blank" rel="noopener">{c.file}</a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Keeping score ────────────────────────────────────────────── -->
+    <section class="section" id="score">
+      <div class="container score">
+        <div>
+          <p class="folio" data-num="DAY 07">keeping score</p>
+          <h2 class="section__title">Optimism you can <em>measure.</em></h2>
+          <p class="section__lede">
+            Big goals fail in quiet weeks. The scoring layer turns each goal into a few things you
+            can count, so a bad week still has a win in it, and a good week is obvious.
+          </p>
+          <ol class="weeks" aria-label="Twelve weeks, with deload weeks 8 and 12">
+            {weeks.map((w) => (
+              <li class:list={['week', { 'week--rest': deload.has(w) }]}>
+                <span class="mono">W{w}</span>
+                {deload.has(w) && <span class="week__tag">rest</span>}
+              </li>
+            ))}
+          </ol>
+        </div>
+        <ul class="principles">
+          {principles.map(([h, b]) => (
+            <li>
+              <strong>{h}</strong>
+              <span>{b}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- ─── A day with Claude ────────────────────────────────────────── -->
+    <section class="section" id="day">
+      <div class="container-narrow">
+        <p class="folio" data-num="DAY 23">a day with claude</p>
+        <h2 class="section__title">Five minutes in the morning. <em>Five at night.</em></h2>
+        <div class="chat">
+          <p class="chat__time mono">7:10 am</p>
+          <p class="bubble bubble--me">Morning. Big day of meetings, then a flight.</p>
+          <p class="bubble bubble--ai">Then let's protect the floors. Your morning move before the first call, water on the plane, and one frog. Which frog are you eating today?</p>
+          <p class="chat__time mono">9:45 pm</p>
+          <p class="bubble bubble--me">Did the walk and the water. No frog.</p>
+          <p class="bubble bubble--ai">Two out of three on a travel day is the floor, and that's a win. The frog moves to tomorrow morning, first thing. Never miss twice.</p>
+        </div>
+        <p class="card__note chat__note">
+          An illustration of the check-in rhythm the skill is built around. The coaching steps
+          are early and improving in the open; watch the repo to follow along.
+        </p>
+      </div>
+    </section>
+
+    <!-- ─── Final CTA ────────────────────────────────────────────────── -->
+    <section class="section finale">
+      <div class="container-narrow finale__inner">
+        <h2 class="finale__title">Day 1 <em class="gradient-text">can be today.</em></h2>
+        <p class="section__lede">Copy the message, paste it into Claude, and start with your first goal.</p>
+        <div class="hero__ctas finale__ctas">
+          <button class="btn btn-primary" type="button" data-copy-standalone={PROMPT}>
+            <span data-copy-label>Copy the message for Claude</span>
+          </button>
+          <a class="btn" href={REPO_URL} target="_blank" rel="noopener">Star it on GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<script is:inline>
+  (() => {
+    const flash = (btn) => {
+      const label = btn.querySelector('[data-copy-label]');
+      if (!label) return;
+      const was = label.textContent;
+      label.textContent = 'Copied. Now paste it into Claude.';
+      setTimeout(() => (label.textContent = was), 2600);
+    };
+    const copy = async (text, btn) => {
+      try {
+        await navigator.clipboard.writeText(text);
+        flash(btn);
+      } catch {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); flash(btn); } catch {}
+        ta.remove();
+      }
+    };
+    document.querySelectorAll('[data-copy-root]').forEach((root) => {
+      const btn = root.querySelector('[data-copy]');
+      const text = root.querySelector('[data-copy-text]');
+      if (btn && text) btn.addEventListener('click', () => copy(text.textContent.trim(), btn));
+    });
+    document.querySelectorAll('[data-copy-standalone]').forEach((btn) => {
+      btn.addEventListener('click', () => copy(btn.getAttribute('data-copy-standalone'), btn));
+    });
+  })();
+</script>
+
+<style>
+  /* ─── Hero ──────────────────────────────────────────────────────────── */
+  .hero {
+    padding: var(--space-16) 0 var(--space-12);
+  }
+  .hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: var(--space-12);
+    align-items: center;
+  }
+  .hero__title {
+    margin-top: var(--space-4);
+    font-size: clamp(3.2rem, 7.5vw, 6rem);
+    line-height: 0.95;
+  }
+  .hero__title em { font-style: italic; }
+  .hero__lede {
+    margin-top: var(--space-6);
+    max-width: 34rem;
+    font-size: 1.15rem;
+    color: var(--color-text-soft);
+  }
+
+  .handoff {
+    margin-top: var(--space-8);
+    border-radius: var(--radius-lg);
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-strong);
+    box-shadow: var(--shadow-elevated);
+    overflow: hidden;
+  }
+  .handoff__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-3) var(--space-3) var(--space-3) var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .handoff__step {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .handoff__copy { padding: 8px 16px; font-size: 0.85rem; }
+  .handoff__prompt {
+    margin: 0;
+    padding: var(--space-4) var(--space-5) var(--space-5);
+    font-family: var(--font__mono);
+    font-size: 0.8rem;
+    line-height: 1.65;
+    color: var(--color-text-soft);
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .hero__ctas {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-5);
+    margin-top: var(--space-6);
+  }
+  .hero__more { font-weight: 600; }
+
+  /* The rising sun */
+  .sunrise svg { width: 100%; height: auto; overflow: visible; }
+  .tick {
+    stroke: var(--tick-off);
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    animation: tick-on 0.4s ease forwards;
+    animation-delay: calc(var(--i) * 28ms + 300ms);
+  }
+  .tick--long { stroke-width: 3.4; }
+  @keyframes tick-on {
+    to { stroke: var(--tick-on); }
+  }
+  .sunrise__sun {
+    filter: drop-shadow(0 0 30px var(--sun-glow));
+    transform-origin: 200px 210px;
+    animation: rise 1.6s cubic-bezier(.2,.7,.2,1) both;
+  }
+  @keyframes rise {
+    from { transform: translateY(70px); opacity: 0.4; }
+    to   { transform: translateY(0); opacity: 1; }
+  }
+  .sunrise__horizon {
+    stroke: var(--color-text);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+  }
+  .sunrise__label {
+    font-family: var(--font__mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    fill: var(--color-text-dim);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tick { stroke: var(--tick-on); }
+  }
+
+  /* ─── Sections ──────────────────────────────────────────────────────── */
+  .section { padding: var(--space-20) 0 0; }
+  .section__title {
+    margin-top: var(--space-4);
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+    max-width: 22ch;
+  }
+  .section__title em { font-style: italic; color: var(--color-accent); }
+  .section__lede {
+    margin-top: var(--space-5);
+    max-width: 36rem;
+    font-size: 1.08rem;
+    color: var(--color-text-soft);
+  }
+
+  /* ─── Index cards ───────────────────────────────────────────────────── */
+  .card {
+    position: relative;
+    padding: var(--space-6);
+    border-radius: var(--radius-md);
+    background:
+      repeating-linear-gradient(180deg, transparent 0 27px, var(--card-lines) 27px 28px),
+      var(--color-bg-card);
+    background-position: 0 44px;
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-card);
+  }
+  .card::before {
+    /* the index card's red header rule */
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 44px;
+    height: 1.5px;
+    background: var(--card-rule);
+  }
+  .card__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    min-height: 28px;
+    margin-bottom: var(--space-5);
+  }
+  .card h3 {
+    font-size: 1.7rem;
+    font-style: italic;
+  }
+  .card p { margin-top: var(--space-3); color: var(--color-text-soft); }
+  .card__day {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    color: var(--color-text-dim);
+  }
+  .card__file {
+    display: inline-block;
+    margin-top: var(--space-4);
+    font-size: 0.72rem;
+    word-break: break-all;
+  }
+  .card__note {
+    margin-top: var(--space-5);
+    font-size: 0.86rem;
+    color: var(--color-text-dim);
+  }
+
+  .ways {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6);
+    margin-top: var(--space-10);
+  }
+  .steps {
+    counter-reset: step;
+    display: grid;
+    gap: var(--space-3);
+  }
+  .steps li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 2.2rem;
+    line-height: 1.6;
+  }
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 0.1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-family: var(--font__mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--color-bg);
+    background: var(--color-accent);
+  }
+  .btn-sm { padding: 8px 16px; font-size: 0.86rem; }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-5);
+    margin-top: var(--space-10);
+  }
+  .card--index:nth-child(odd)  { transform: rotate(-0.6deg); }
+  .card--index:nth-child(even) { transform: rotate(0.5deg); }
+  .card--index { transition: transform var(--transition-mid), box-shadow var(--transition-mid); }
+  .card--index:hover { transform: rotate(0) translateY(-4px); box-shadow: var(--shadow-elevated); }
+
+  /* ─── Score ─────────────────────────────────────────────────────────── */
+  .score {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-12);
+    align-items: start;
+  }
+  .weeks {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 4px;
+    margin-top: var(--space-8);
+  }
+  .week {
+    display: grid;
+    gap: 2px;
+    justify-items: center;
+    padding: var(--space-3) 0;
+    border-radius: var(--radius-sm);
+    font-size: 0.66rem;
+    color: var(--color-text-soft);
+    background: color-mix(in oklab, var(--color-accent) 14%, transparent);
+  }
+  .week--rest {
+    background: color-mix(in oklab, var(--color-thread) 16%, transparent);
+    color: var(--color-thread);
+  }
+  .week__tag { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .principles { display: grid; gap: var(--space-2); }
+  .principles li {
+    display: grid;
+    gap: 2px;
+    padding: var(--space-4) 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .principles strong {
+    font-family: var(--font__display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.45rem;
+  }
+  .principles span { color: var(--color-text-soft); }
+
+  /* ─── Chat ──────────────────────────────────────────────────────────── */
+  .chat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: var(--space-10);
+  }
+  .chat__time {
+    align-self: center;
+    margin-top: var(--space-4);
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-dim);
+  }
+  .bubble {
+    max-width: 80%;
+    padding: var(--space-3) var(--space-5);
+    border-radius: 18px;
+    line-height: 1.5;
+  }
+  .bubble--me {
+    align-self: flex-end;
+    background: var(--color-text);
+    color: var(--color-bg);
+    border-bottom-right-radius: 4px;
+  }
+  .bubble--ai {
+    align-self: flex-start;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-strong);
+    border-bottom-left-radius: 4px;
+  }
+  .chat__note { text-align: center; }
+
+  /* ─── Finale ────────────────────────────────────────────────────────── */
+  .finale { padding-bottom: var(--space-8); }
+  .finale__inner { text-align: center; }
+  .finale__title { font-size: clamp(2.8rem, 6vw, 4.6rem); }
+  .finale__title em { font-style: italic; }
+  .finale .section__lede { margin-left: auto; margin-right: auto; }
+  .finale__ctas { justify-content: center; }
+
+  /* ─── Responsive ────────────────────────────────────────────────────── */
+  @media (max-width: 1000px) {
+    .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 860px) {
+    .hero { padding-top: var(--space-10); }
+    .hero__grid, .score, .ways { grid-template-columns: minmax(0, 1fr); }
+    .sunrise { order: -1; max-width: 420px; margin: 0 auto; width: 100%; }
+    .weeks { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .cards { grid-template-columns: minmax(0, 1fr); }
+    .handoff__head { flex-direction: column; align-items: stretch; }
+    .bubble { max-width: 92%; }
+  }
+</style>

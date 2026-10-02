@@ -1,13 +1,36 @@
+<p align="center">
+  <img src="splash/public/brand/hope-ai-logotype.png" alt="hope.ai" width="360">
+</p>
+
 # hope-ai
 
-Agent skill, templates, scripts, and reference patterns for the **ChoiceCenter
-Personal Strategic Plan (PSP)**: the 100-day goal document a Leadership Legacy
-(LV) cohort works through together.
+An open toolkit for the **ChoiceCenter Personal Strategic Plan (PSP)**, the
+100-day goal document a Leadership Legacy (LV) cohort works through together.
+Give Claude this repo, and it helps you write goals you can keep, score each
+week on what you did, and start again the next morning.
 
-Not an app. This repo is the toolkit an agent loads to help a member draft
-their plan, turn each goal into something checkable week to week, run daily
-check-ins and weekly retros against it, and export it back into the program's
-shared Google Doc.
+**Website:** https://lossless-group.github.io/hope-ai/
+
+## Start here (Claude app on Mac or Windows)
+
+**Fastest:** start a new chat in Claude and paste this:
+
+```
+I'm in a ChoiceCenter 100-day program and I'm writing my Personal Strategic Plan (PSP). Please read this toolkit first: https://github.com/lossless-group/hope-ai
+
+Start with the skill at https://raw.githubusercontent.com/lossless-group/hope-ai/main/context-v/agent-skills/personal-strategic-plan/SKILL.md and follow it. Then interview me one goal at a time and help me write a plan I can score every week.
+```
+
+If Claude says it can't open the link, make sure web search is on for the chat.
+
+**For every chat:** install the skill.
+
+1. Download [`personal-strategic-plan.zip`](https://lossless-group.github.io/hope-ai/personal-strategic-plan.zip).
+2. In Claude, **Settings → Capabilities**: turn on **Code execution and file creation**.
+3. **Customize → Skills → + → Create skill → Upload a skill**, and choose the zip (don't unzip it).
+4. Start a new chat: *"Let's work on my PSP."*
+
+Steps per [Anthropic's help center](https://support.claude.com/en/articles/12512180-use-skills-in-claude).
 
 ## Layout
 
@@ -18,17 +41,19 @@ hope-ai/
 │   └── goal-block-scored.md    the scored goal block (floors, targets, rules)
 ├── scripts/
 │   ├── build-psp.sh            markdown → pasteable HTML + .docx
-│   └── build-psp.py            inline-styles pandoc HTML for Google Docs
+│   ├── build-psp.py            inline-styles pandoc HTML for Google Docs
+│   └── package-skill.sh        builds the uploadable skill zip
 ├── references/
 │   ├── template-anatomy.md     program sections vs. member extensions
 │   ├── example-plan.md         one finished plan, identity details stripped
 │   └── rendering/              Astro page + CSS for rendering a plan on a site
 ├── context-v/
 │   └── agent-skills/personal-strategic-plan/SKILL.md
+├── splash/                     the GitHub Pages site (Astro)
 └── changelog/
 ```
 
-## Using it
+## Using it directly
 
 **Start a plan.** Copy `templates/psp-blank.md` somewhere private (not this
 repo) and fill it in. To make a goal measurable, replace its block with

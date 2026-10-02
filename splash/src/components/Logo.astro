@@ -1,0 +1,60 @@
+---
+/**
+ * The hope-ai mark + logotype. The mark is a half-risen sun over a horizon:
+ * the first morning of a 100-day plan. The logotype sets "hope" in the italic
+ * display serif and ".ai" in mono, so the human word leads and the machine
+ * part follows. Colors come from tokens, so it pivots with the mode.
+ */
+interface Props {
+  size?: number;
+  markOnly?: boolean;
+}
+const { size = 28, markOnly = false } = Astro.props;
+---
+
+<span class="logo" style={`--logo-size:${size}px`}>
+  <svg class="logo__mark" viewBox="0 0 64 64" width={size} height={size} aria-hidden="true">
+    <g stroke="var(--color-accent)" stroke-width="3.6" stroke-linecap="round">
+      <line x1="32" y1="9" x2="32" y2="16" />
+      <line x1="15.7" y1="15.7" x2="20.6" y2="20.6" />
+      <line x1="48.3" y1="15.7" x2="43.4" y2="20.6" />
+      <line x1="8" y1="32" x2="15" y2="32" />
+      <line x1="49" y1="32" x2="56" y2="32" />
+    </g>
+    <path d="M17 44a15 15 0 0 1 30 0z" fill="var(--color-accent-warm)" />
+    <line x1="7" y1="46" x2="57" y2="46" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" />
+  </svg>
+  {!markOnly && (
+    <span class="logo__type">
+      <span class="logo__word">hope</span><span class="logo__ai">.ai</span>
+    </span>
+  )}
+</span>
+
+<style>
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--logo-size) * 0.3);
+    color: var(--color-text);
+    line-height: 1;
+  }
+  .logo__mark { flex: none; }
+  .logo__type {
+    display: inline-flex;
+    align-items: baseline;
+  }
+  .logo__word {
+    font-family: var(--font__display);
+    font-style: italic;
+    font-size: calc(var(--logo-size) * 1.05);
+    letter-spacing: -0.01em;
+  }
+  .logo__ai {
+    font-family: var(--font__mono);
+    font-size: calc(var(--logo-size) * 0.5);
+    font-weight: 500;
+    color: var(--color-accent);
+    margin-left: 1px;
+  }
+</style>

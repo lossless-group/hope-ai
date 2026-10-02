@@ -1,0 +1,549 @@
+/* ─────────────────────────────────────────────────────────────────────────
+   theme.css — hope-ai/splash
+   Two-tier token system + three-mode contract per the Astro Knots convention.
+
+   Tier 1: NAMED tokens  (--color__apricot, --font__display)
+           Mode-invariant raw values.
+
+   Tier 2: SEMANTIC tokens (--color-bg, --color-accent)
+           Reference Tier 1; rebound per <html data-mode="...">.
+
+   POSTURE — "first light": this splash is for a 100-day plan, so it dresses
+   like the morning you start one. Horizon bands of dawn sky as the
+   background ornament, a rising sun of 100 day-ticks as the hero, index
+   cards (the plan's own notecard system) as card chrome, an italic serif
+   that sounds like someone talking to you rather than a datasheet.
+
+   Modes (light is the default — dawn):
+   - light   : default; "dawn" — cream sky warming to apricot at the horizon.
+   - dark    : "the night before" — indigo, a few stars, the sun still below.
+   - vibrant : "golden hour" — saturated coral and gold on deep plum.
+
+   The brand spine — apricot + sky + marigold — is a sunrise. Distinct from
+   memopop (cyan + plum), augment-it (magenta-iris), lfm (ink-violet +
+   sienna + moss), id-didi-sh (verdigris + copper), ai-labs (violet family).
+   ───────────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* ─── Tier 1: NAMED tokens — raw values, mode-invariant ──────────────── */
+
+  /* Brand spine — first light */
+  --color__apricot:         #f28c5b;
+  --color__apricot-deep:    #c95a2c;
+  --color__apricot-soft:    #fbd2bb;
+  --color__marigold:        #f5b83d;
+  --color__marigold-deep:   #b97f0c;
+  --color__marigold-soft:   #fde6b0;
+  --color__sky:             #5aa6d6;
+  --color__sky-deep:        #2b6f9e;
+  --color__sky-soft:        #cfe6f4;
+  --color__rose:            #e8708a;
+  --color__rose-soft:       #f7c9d3;
+
+  /* Night axis */
+  --color__indigo-deep:     #0c0f24;
+  --color__indigo:          #121633;
+  --color__indigo-soft:     #1b2046;
+  --color__plum-deep:       #1a0c1f;
+  --color__plum:            #24112b;
+  --color__plum-soft:       #331a3c;
+
+  /* Day neutrals — warm, never grey-blue */
+  --color__cream:           #fffaf2;
+  --color__cream-soft:      #fbf2e4;
+  --color__cream-deep:      #f3e5cf;
+  --color__ink:             #2a1f1a;
+  --color__ink-soft:        #5a4a40;
+  --color__ink-dim:         #8a776a;
+  --color__ink-faint:       #b8a596;
+
+  /* Typography — Tier 1.
+     Display: Instrument Serif (italic does the talking).
+     Sans:    Figtree (open, friendly body).
+     Mono:    JetBrains Mono (commands, counts, the day ticker). */
+  --font__display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font__sans:    'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font__mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Spacing — invariant */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* Radii — index cards have soft corners; buttons are pills. */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-xl: 16px;
+  --radius-pill: 999px;
+
+  --transition-fast: 160ms ease;
+  --transition-mid:  320ms ease;
+
+  color-scheme: light;
+}
+
+/* ─── Tier 2: SEMANTIC — LIGHT MODE (default; "dawn") ─────────────────── */
+:root,
+:root[data-mode='light'] {
+  --color-bg:           var(--color__cream);
+  --color-bg-soft:      var(--color__cream-soft);
+  --color-bg-elevated:  #ffffff;
+  --color-bg-card:      #fffdf8;
+  --color-bg-code:      var(--color__cream-deep);
+
+  --color-text:         var(--color__ink);
+  --color-text-soft:    var(--color__ink-soft);
+  --color-text-dim:     var(--color__ink-dim);
+  --color-text-dimmer:  #a08d80;
+  --color-text-faint:   var(--color__ink-faint);
+
+  --color-accent:       var(--color__apricot-deep);
+  --color-accent-soft:  var(--color__apricot);
+  --color-accent-warm:  var(--color__marigold-deep);
+  --color-accent-hot:   var(--color__rose);
+
+  --color-thread:       var(--color__sky-deep);
+  --color-thread-soft:  var(--color__sky);
+
+  --color-border:       rgba(42, 31, 26, 0.10);
+  --color-border-strong: rgba(42, 31, 26, 0.20);
+  --color-border-accent: rgba(201, 90, 44, 0.45);
+
+  --shadow-glow:     0 0 80px rgba(245, 184, 61, 0.25);
+  --shadow-card:     0 1px 0 rgba(42, 31, 26, 0.05), 0 14px 28px -18px rgba(120, 60, 20, 0.28);
+  --shadow-elevated: 0 1px 0 rgba(42, 31, 26, 0.06), 0 28px 56px -24px rgba(120, 60, 20, 0.32);
+
+  --gradient-thread:
+    linear-gradient(100deg,
+      var(--color__rose) 0%,
+      var(--color__apricot-deep) 45%,
+      var(--color__marigold-deep) 100%);
+
+  /* The sky, top to horizon. */
+  --sky-band:
+    linear-gradient(180deg,
+      #fffaf2 0%,
+      #fff3e2 38%,
+      #fde2c6 70%,
+      #f9c9a6 100%);
+  --sun-core:   var(--color__marigold);
+  --sun-glow:   rgba(245, 184, 61, 0.45);
+  --tick-off:   rgba(42, 31, 26, 0.14);
+  --tick-on:    var(--color__apricot-deep);
+  --star-alpha: 0;
+
+  --card-rule:  rgba(232, 112, 138, 0.55);  /* the index card's red header line */
+  --card-lines: rgba(90, 166, 214, 0.18);   /* its faint blue ruling */
+
+  color-scheme: light;
+}
+
+/* ─── Tier 2: SEMANTIC — DARK MODE ("the night before") ───────────────── */
+:root[data-mode='dark'] {
+  --color-bg:           var(--color__indigo-deep);
+  --color-bg-soft:      var(--color__indigo);
+  --color-bg-elevated:  var(--color__indigo-soft);
+  --color-bg-card:      #151a3a;
+  --color-bg-code:      #0a0d1f;
+
+  --color-text:         #f3eee6;
+  --color-text-soft:    #cfc8d8;
+  --color-text-dim:     #948ead;
+  --color-text-dimmer:  #6f6a8a;
+  --color-text-faint:   #4f4b6b;
+
+  --color-accent:       var(--color__apricot);
+  --color-accent-soft:  var(--color__apricot-soft);
+  --color-accent-warm:  var(--color__marigold);
+  --color-accent-hot:   var(--color__rose);
+
+  --color-thread:       var(--color__sky);
+  --color-thread-soft:  var(--color__sky-soft);
+
+  --color-border:       rgba(207, 200, 216, 0.12);
+  --color-border-strong: rgba(207, 200, 216, 0.24);
+  --color-border-accent: rgba(242, 140, 91, 0.55);
+
+  --shadow-glow:     0 0 90px rgba(242, 140, 91, 0.20);
+  --shadow-card:     0 18px 40px -22px rgba(0, 0, 0, 0.7), 0 1px 0 rgba(242, 140, 91, 0.08);
+  --shadow-elevated: 0 30px 70px -28px rgba(0, 0, 0, 0.75);
+
+  --gradient-thread:
+    linear-gradient(100deg,
+      var(--color__rose) 0%,
+      var(--color__apricot) 45%,
+      var(--color__marigold) 100%);
+
+  --sky-band:
+    linear-gradient(180deg,
+      #0c0f24 0%,
+      #121633 45%,
+      #2a1f4a 78%,
+      #4a2a4a 100%);
+  --sun-core:   var(--color__apricot);
+  --sun-glow:   rgba(242, 140, 91, 0.30);
+  --tick-off:   rgba(243, 238, 230, 0.14);
+  --tick-on:    var(--color__marigold);
+  --star-alpha: 0.85;
+
+  --card-rule:  rgba(232, 112, 138, 0.6);
+  --card-lines: rgba(90, 166, 214, 0.12);
+
+  color-scheme: dark;
+}
+
+/* ─── Tier 2: SEMANTIC — VIBRANT MODE ("golden hour") ─────────────────── */
+:root[data-mode='vibrant'] {
+  --color-bg:           var(--color__plum-deep);
+  --color-bg-soft:      var(--color__plum);
+  --color-bg-elevated:  var(--color__plum-soft);
+  --color-bg-card:      #2a1532;
+  --color-bg-code:      #12081a;
+
+  --color-text:         #fff3e6;
+  --color-text-soft:    #f2d4c4;
+  --color-text-dim:     #c49a9a;
+  --color-text-dimmer:  #9a7380;
+  --color-text-faint:   #6e4f63;
+
+  --color-accent:       #ff9a5c;
+  --color-accent-soft:  #ffc9a3;
+  --color-accent-warm:  #ffd23f;
+  --color-accent-hot:   #ff5e8a;
+
+  --color-thread:       #ffd23f;
+  --color-thread-soft:  #ffe999;
+
+  --color-border:       rgba(255, 154, 92, 0.18);
+  --color-border-strong: rgba(255, 154, 92, 0.36);
+  --color-border-accent: rgba(255, 154, 92, 0.65);
+
+  --shadow-glow:     0 0 110px rgba(255, 154, 92, 0.38);
+  --shadow-card:     0 18px 40px -22px rgba(0, 0, 0, 0.7), 0 1px 0 rgba(255, 154, 92, 0.14);
+  --shadow-elevated: 0 30px 70px -28px rgba(255, 94, 138, 0.4);
+
+  --gradient-thread:
+    linear-gradient(100deg,
+      #ff5e8a 0%,
+      #ff9a5c 45%,
+      #ffd23f 100%);
+
+  --sky-band:
+    linear-gradient(180deg,
+      #1a0c1f 0%,
+      #3a1340 40%,
+      #a3344f 78%,
+      #f0713f 100%);
+  --sun-core:   #ffd23f;
+  --sun-glow:   rgba(255, 210, 63, 0.55);
+  --tick-off:   rgba(255, 243, 230, 0.16);
+  --tick-on:    #ffd23f;
+  --star-alpha: 0.4;
+
+  --card-rule:  rgba(255, 94, 138, 0.7);
+  --card-lines: rgba(255, 210, 63, 0.14);
+
+  color-scheme: dark;
+}
+
+/* ─── Reset & base ────────────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-bg);
+  transition: background var(--transition-mid);
+}
+
+body {
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font__sans);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  overflow-x: hidden;
+  transition: background var(--transition-mid), color var(--transition-mid);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font__display);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration: none;
+  text-underline-offset: 3px;
+  transition: color var(--transition-fast);
+}
+a:hover { text-decoration: underline; text-decoration-thickness: 1px; }
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+ul, ol { list-style: none; }
+img { max-width: 100%; height: auto; }
+
+::selection {
+  background: color-mix(in oklab, var(--color__marigold) 45%, transparent);
+  color: var(--color-text);
+}
+
+/* ─── Background ornament — the sky ─────────────────────────────────────
+   The page sits under a sky that warms toward a horizon at the bottom of
+   the first screen. Dark and vibrant modes scatter a few stars across the
+   top. Pure CSS; the stars are radial-gradient dots. */
+.bg-mesh {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 120vh;
+  z-index: 0;
+  pointer-events: none;
+  background: var(--sky-band);
+  mask-image: linear-gradient(180deg, #000 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent 100%);
+  transition: background var(--transition-mid);
+}
+
+.bg-mesh::before {
+  /* stars */
+  content: '';
+  position: absolute;
+  inset: 0 0 45% 0;
+  opacity: var(--star-alpha);
+  background:
+    radial-gradient(1.5px 1.5px at 8% 12%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 22% 30%, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 37% 8%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 51% 22%, #fff 50%, transparent 51%),
+    radial-gradient(2px 2px at 64% 6%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 72% 34%, #fff 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 84% 16%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 93% 40%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 14% 48%, #fff 50%, transparent 51%),
+    radial-gradient(1px 1px at 44% 44%, #fff 50%, transparent 51%);
+  transition: opacity var(--transition-mid);
+}
+
+body > :not(.bg-mesh) {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Utility primitives ─────────────────────────────────────────────── */
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.container-narrow {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.mono    { font-family: var(--font__mono); }
+.display { font-family: var(--font__display); }
+
+.eyebrow {
+  font-family: var(--font__mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+
+/* Section folio — the day-counter label: "DAY 01 · THE TEMPLATE". */
+.folio {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  font-family: var(--font__mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-dim);
+}
+.folio::before {
+  content: attr(data-num);
+  font-weight: 600;
+  color: var(--color-accent);
+  font-size: 0.78rem;
+  letter-spacing: 0;
+  padding: 1px 6px;
+  border: 1px solid var(--color-border-accent);
+  border-radius: var(--radius-sm);
+  background: color-mix(in oklab, var(--color-accent) 8%, transparent);
+}
+
+.gradient-text {
+  background: var(--gradient-thread);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font__mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text-soft);
+  background: color-mix(in oklab, var(--color-text) 4%, transparent);
+}
+.pill[data-status='Active'],
+.pill[data-status='Stable'],
+.pill[data-status='live'],
+.pill[data-status='Implementing'] {
+  color: var(--color-thread);
+  border-color: color-mix(in oklab, var(--color-thread) 50%, transparent);
+  background: color-mix(in oklab, var(--color-thread) 12%, transparent);
+}
+.pill[data-status='Beta'] {
+  color: var(--color-accent);
+  border-color: color-mix(in oklab, var(--color-accent) 50%, transparent);
+  background: color-mix(in oklab, var(--color-accent) 12%, transparent);
+}
+.pill[data-status='Alpha'],
+.pill[data-status='Experiment'],
+.pill[data-status='planned'],
+.pill[data-status='Draft'] {
+  color: var(--color-accent-warm);
+  border-color: color-mix(in oklab, var(--color-accent-warm) 50%, transparent);
+  background: color-mix(in oklab, var(--color-accent-warm) 12%, transparent);
+}
+
+/* Stamp — a rubber stamp on an index card: double rule, uppercase mono, a
+   hair of rotation. Used for statuses ("works today", "being written"). */
+.stamp {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border: 2px double currentColor;
+  border-radius: var(--radius-sm);
+  font-family: var(--font__mono);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-thread);
+  transform: rotate(-2deg);
+  background: color-mix(in oklab, currentColor 6%, transparent);
+}
+.stamp[data-ink='warm'] { color: var(--color-accent-warm); }
+.stamp[data-ink='accent'] { color: var(--color-accent); }
+.stamp[data-ink='dim']    { color: var(--color-text-dim); }
+
+.from-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font__mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--color-thread);
+  background: color-mix(in oklab, var(--color-thread) 12%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-thread) 35%, transparent);
+}
+.from-tag::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-thread);
+}
+
+.chip {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font__mono);
+  font-size: 0.82em;
+  background: var(--color-bg-code);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-soft);
+  white-space: nowrap;
+}
+
+.ver-chip {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font__mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+  border: 1px solid color-mix(in oklab, var(--color-accent) 36%, transparent);
+  background: color-mix(in oklab, var(--color-accent) 8%, transparent);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 12px 22px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font__sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: border-color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast);
+}
+.btn:hover {
+  border-color: var(--color-accent);
+  text-decoration: none;
+}
+.btn-primary {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-bg);
+}
+.btn-primary:hover {
+  background: var(--color-accent-soft);
+  border-color: var(--color-accent-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
