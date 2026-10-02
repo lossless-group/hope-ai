@@ -3,14 +3,24 @@ import { defineConfig } from 'astro/config';
 import pagefind from 'astro-pagefind';
 import sitemap from '@astrojs/sitemap';
 
-// Splash for hope-ai.
-// Hosted on GitHub Pages from lossless-group/hope-ai.
-// Live URL: https://lossless-group.github.io/hope-ai/
+// Splash for hope-ai. Two hosts, one build:
 //
-// If a custom domain is added later, set `site` to that domain and `base` to '/'.
+//   GitHub Pages: https://lossless-group.github.io/hope-ai/  (project page, base '/hope-ai/')
+//   Vercel:       served from the domain root                (base '/')
+//
+// Vercel sets VERCEL=1 during builds, and VERCEL_PROJECT_PRODUCTION_URL to the
+// project's production domain. SITE_URL overrides both, e.g. once a custom
+// domain is attached.
+const onVercel = process.env.VERCEL === '1';
+const site =
+  process.env.SITE_URL ??
+  (onVercel && process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : 'https://lossless-group.github.io');
+
 export default defineConfig({
-  site: 'https://lossless-group.github.io',
-  base: '/hope-ai/',
+  site,
+  base: onVercel || process.env.SITE_URL ? '/' : '/hope-ai/',
   trailingSlash: 'ignore',
 
   integrations: [

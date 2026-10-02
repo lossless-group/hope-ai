@@ -24,6 +24,16 @@ templates, and references.
 `.github/workflows/pages.yml` at the repo root builds `splash/` and deploys
 to GitHub Pages on every push to `main`.
 
+**Vercel** (optional second host): import `lossless-group/hope-ai` and set
+**Root Directory** to `splash`. `vercel.json` supplies the install, build,
+and output settings. Leave "Include files outside the root directory" on
+(the default): the build packages the skill zip from `../templates`,
+`../references`, and `../scripts`.
+
+`astro.config.mjs` serves from `/` when `VERCEL=1` (set by Vercel) and from
+`/hope-ai/` on Pages. Set `SITE_URL` in Vercel once a custom domain is
+attached, so canonical and OG URLs use it.
+
 ## Where content lives
 
 | Surface | Source |
