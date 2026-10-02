@@ -20,7 +20,7 @@ unless asked.
 | `context-v/agent-skills/personal-strategic-plan/SKILL.md` | the skill; linked into `~/.claude/skills/` by the anchor's `sync-skills-symlinks.sh` |
 | `templates/` | `psp-blank.md` (the program form) and `goal-block-scored.md` (the scored extension) |
 | `scripts/build-psp.sh` | plan markdown → Google-Docs-pasteable HTML + .docx (needs `pandoc`, `python3`) |
-| `references/` | template anatomy, one finished example plan, the Astro rendering pattern |
+| `references/` | goal pacing (the philosophy), template anatomy, one finished example plan, the Astro rendering pattern |
 | `scripts/package-skill.sh` | builds `personal-strategic-plan.zip` for Claude's Customize → Skills upload; the splash build runs it |
 | `splash/` | GitHub Pages site (Astro), deployed on push to `main`; see `splash/README.md` and `splash/DESIGN.md` |
 | `changelog/` | ship log, per `changelog-conventions` |
@@ -30,6 +30,11 @@ unless asked.
 - **Program wording is fixed.** Box labels, goal headers, and the closing
   sections are ChoiceCenter's and get pasted into a shared Google Doc. See
   `references/template-anatomy.md` before restructuring a template.
+- **The scoring philosophy is the product.** Process goals (leading
+  indicators) are scored; outcomes (lagging) are read and paced toward;
+  habits are layered, never stacked. `references/goal-pacing.md` is the
+  source of truth; the skill, templates, README, and splash copy restate it
+  and must not drift from it.
 - **This repo is public.** Never commit a member's filled-in plan, and never
   commit identity details (phone, email, address, handles). The one example
   plan is already published on mpstaton-site and has its identity table stripped.

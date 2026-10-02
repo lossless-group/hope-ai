@@ -32,6 +32,23 @@ If Claude says it can't open the link, make sure web search is on for the chat.
 
 Steps per [Anthropic's help center](https://support.claude.com/en/articles/12512180-use-skills-in-claude).
 
+## The philosophy
+
+Outcomes (weight, income, a finished album) are **lagging indicators**: you
+can want them, but you can't do them. Process goals (fasting days, Zone 2
+minutes, calls made) are the **leading indicators** that drive them. The
+toolkit scores the process every week and reads the outcome at Day 0, the
+midpoint, and the end.
+
+- Bring an **outcome**, and Claude finds the process goals behind it and
+  **paces** them with realistic rates, so keeping them gets you there.
+- Bring a **process goal**, and Claude **projects** a reasonable outcome if
+  you keep it.
+- Either way, habits are **layered, not stacked**: start small, add one at
+  a time. Ambition goes in the outcome, not in Week 1.
+
+Full method: [`references/goal-pacing.md`](references/goal-pacing.md).
+
 ## Layout
 
 ```
@@ -44,6 +61,7 @@ hope-ai/
 │   ├── build-psp.py            inline-styles pandoc HTML for Google Docs
 │   └── package-skill.sh        builds the uploadable skill zip
 ├── references/
+│   ├── goal-pacing.md          the philosophy: leading indicators paced to an outcome
 │   ├── template-anatomy.md     program sections vs. member extensions
 │   ├── example-plan.md         one finished plan, identity details stripped
 │   └── rendering/              Astro page + CSS for rendering a plan on a site
