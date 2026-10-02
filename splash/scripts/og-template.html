@@ -1,0 +1,97 @@
+<!doctype html>
+<!--
+  hope-ai share-image template (Technique B: rasterize the hero).
+  Rendered by scripts/render-og.sh at each format's size, e.g.
+  og-template.html?w=1200&h=1600. Landscape sizes put copy left and the
+  sunrise right; tall sizes stack copy over a large sunrise anchored at the
+  bottom, leaving the top band as quiet sky for chat-preview crops.
+  Colors and type mirror DESIGN.md / src/styles/theme.css (light "dawn" mode).
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root { --w: 1200px; --h: 630px; --u: 1px; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: var(--w); height: var(--h); overflow: hidden; }
+  body {
+    position: relative;
+    font-family: Figtree, sans-serif;
+    color: #2a1f1a;
+    background: linear-gradient(180deg, #fffaf2 0%, #fff3e2 40%, #fde2c6 75%, #f9c9a6 100%);
+  }
+  .eye { font-family: 'JetBrains Mono', monospace; letter-spacing: .2em; text-transform: uppercase; color: #8a776a; font-size: calc(18 * var(--u)); }
+  h1 { font-family: 'Instrument Serif', serif; font-weight: 400; line-height: .95; margin-top: calc(22 * var(--u)); font-size: calc(100 * var(--u)); }
+  h1 em { background: linear-gradient(100deg, #e8708a, #c95a2c 45%, #b97f0c); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  p { color: #5a4a40; line-height: 1.4; margin-top: calc(26 * var(--u)); font-size: calc(26 * var(--u)); }
+  .brand { position: absolute; display: flex; align-items: baseline; gap: calc(3 * var(--u)); }
+  .brand b { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; font-size: calc(40 * var(--u)); }
+  .brand i { font-family: 'JetBrains Mono', monospace; font-style: normal; font-size: calc(20 * var(--u)); color: #c95a2c; }
+  .url { position: absolute; font-family: 'JetBrains Mono', monospace; font-size: calc(18 * var(--u)); color: #8a776a; }
+  svg.sun { position: absolute; }
+  .tall-only { display: none; }
+  body.tall .tall-only { display: inline; }
+
+  /* Landscape: copy left, sun right */
+  body.wide .copy { position: absolute; left: calc(80 * var(--u)); top: 14.5%; width: 52%; }
+  body.wide p { width: 90%; }
+  body.wide svg.sun { right: 4%; bottom: 23%; width: 40%; }
+  body.wide .brand { left: calc(80 * var(--u)); bottom: 9%; }
+  body.wide .url { right: calc(80 * var(--u)); bottom: 10%; }
+
+  /* Square and tall: copy stacked, sun large at the bottom */
+  body.tall .copy { position: absolute; left: 8%; right: 8%; top: var(--copy-top, 18%); text-align: center; }
+  body.tall h1 { font-size: calc(176 * var(--u)); line-height: .92; }
+  body.tall .eye { font-size: calc(24 * var(--u)); }
+  body.tall p { font-size: calc(40 * var(--u)); margin-top: calc(34 * var(--u)); margin-left: auto; margin-right: auto; max-width: 88%; }
+  body.tall svg.sun { left: 50%; transform: translateX(-50%); width: var(--sun-w, 90%); bottom: var(--sun-bottom, 12%); }
+  body.tall .brand { left: 50%; transform: translateX(-50%); bottom: 4.5%; }
+  body.tall .url { display: none; }
+</style>
+</head>
+<body>
+  <div class="copy">
+    <div class="eye">ChoiceCenter · 100 days</div>
+    <h1>Hope,<br class="tall-only"> <em>with a plan.</em></h1>
+    <p>Give Claude one link. Write goals you can keep, and score every week on what you did.</p>
+  </div>
+  <svg class="sun" viewBox="0 0 400 230">
+    <defs>
+      <linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f5b83d"/><stop offset="1" stop-color="#e8708a"/></linearGradient>
+      <radialGradient id="h"><stop offset="0" stop-color="rgba(245,184,61,.5)"/><stop offset="1" stop-color="rgba(245,184,61,0)"/></radialGradient>
+    </defs>
+    <circle cx="200" cy="210" r="195" fill="url(#h)"/>
+    <g id="ticks" stroke="#c95a2c" stroke-width="2.6" stroke-linecap="round"></g>
+    <path d="M88 210A112 112 0 0 1 312 210Z" fill="url(#g)"/>
+    <line x1="0" y1="210" x2="400" y2="210" stroke="#2a1f1a" stroke-width="2.5" stroke-linecap="round"/>
+  </svg>
+  <div class="brand"><b>hope</b><i>.ai</i></div>
+  <div class="url">github.com/lossless-group/hope-ai</div>
+<script>
+  const q = new URLSearchParams(location.search);
+  const w = +q.get('w') || 1200, h = +q.get('h') || 630;
+  const r = document.documentElement.style;
+  r.setProperty('--w', w + 'px');
+  r.setProperty('--h', h + 'px');
+  // One design unit = 1px at a 1200-wide landscape banner; scale with width.
+  r.setProperty('--u', (w / 1200) + 'px');
+  const tall = h >= w;
+  document.body.className = tall ? 'tall' : 'wide';
+  if (tall) {
+    const ratio = h / w; // 1 (square) … 1.78 (9x16)
+    r.setProperty('--copy-top', ratio < 1.1 ? '6%' : ratio < 1.4 ? '10%' : ratio < 1.6 ? '13%' : '17%');
+    r.setProperty('--sun-bottom', ratio < 1.1 ? '11%' : '10%');
+    if (ratio < 1.1) { r.setProperty('--sun-w', '62%'); }
+  }
+  const g = document.getElementById('ticks');
+  for (let i = 0; i < 100; i++) {
+    const a = Math.PI - (i / 99) * Math.PI, r2 = (i + 1) % 10 === 0 ? 180 : 172;
+    const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    l.setAttribute('x1', 200 + 150 * Math.cos(a)); l.setAttribute('y1', 210 - 150 * Math.sin(a));
+    l.setAttribute('x2', 200 + r2 * Math.cos(a));  l.setAttribute('y2', 210 - r2 * Math.sin(a));
+    g.appendChild(l);
+  }
+</script>
+</body>
+</html>

@@ -47,7 +47,23 @@ imagery:
   mark: public/brand/hope-ai-mark.svg            # half-risen sun over a horizon
   app_icon: public/brand/hope-ai-app-icon.svg     # rasterized to 128, 180, 512
   logotype: public/brand/hope-ai-logotype.svg     # "hope" italic serif + ".ai" mono
-  og: public/ogimage__Hope-Ai--Banner.jpg         # 1200x630, rendered from HTML via headless Chrome
+  # Share images: Technique B (rasterize the hero), not Ideogram. The hero
+  # already says the thing, and renders are deterministic. Source:
+  # scripts/og-template.html, rendered by scripts/render-og.sh; replaced files
+  # move to .ogimage-archive/ with a date stamp.
+  og:
+    technique: hero-rasterization
+    template: scripts/og-template.html
+    render: scripts/render-og.sh
+    live: public/ogimage__Hope-Ai--Banner.jpg   # wired in src/lib/seo.ts DEFAULT_OG
+    formats:
+      Default: 1200x630        # alias of Banner
+      Banner: 1200x630         # OG / X / Slack / LinkedIn
+      BannerTall: 1200x1600    # 3:4 WhatsApp / iMessage
+      BannerTallMax: 1200x1800 # 2:3
+      Portrait: 1080x1350      # 4:5
+      PortraitTall: 1080x1920  # 9:16 Stories / Reels
+      Square: 1200x1200        # 1:1
 ---
 
 # hope.ai — Splash
@@ -95,6 +111,15 @@ pills. Stamps keep the family's double-rule rubber-stamp shape.
 long tick every 10th day, sequential light-up animation, disabled under
 reduced motion), the copy panel, numbered steps, the 12-week strip with
 rest weeks 8 and 12, chat bubbles.
+
+## Imagery
+
+Share images are the hero itself, rasterized: the headline, the 100-tick
+sunrise, and the logotype on the dawn sky. Landscape puts copy left and the
+sun right; square and tall formats stack a two-line headline over a large
+sun anchored near the bottom. To change copy or layout, edit
+`scripts/og-template.html` and run `scripts/render-og.sh` (all formats) or
+`scripts/render-og.sh BannerTall` (one).
 
 ## Do's and Don'ts
 

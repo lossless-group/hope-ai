@@ -33,7 +33,7 @@ export const STATIC_SEO = {
  * Default OG image lives in /public/.
  */
 export const DEFAULT_OG = {
-  url: 'ogimage__Hope-Ai--Banner.jpg',
+  url: 'ogimage__Hope-Ai--Banner.jpg?v=2',  // bump v when the bytes change, to force a re-unfurl
   width: 1200,
   height: 630,
   type: 'image/jpeg',
