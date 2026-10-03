@@ -22,6 +22,9 @@ repo root (on GitHub). If you can't read a bundled file, fetch it from
 | `templates/psp-blank.md` | The program form, blank. The structure every plan follows. |
 | `references/goal-pacing.md` | **The scoring philosophy.** Leading vs. lagging indicators, pacing process goals to an outcome, layering habits. Read before drafting or tightening any goal. |
 | `templates/goal-block-scored.md` | The scored goal block (process goals, pacing, 30/60/90 outcome milestones), plus the "How I keep score" section. |
+| `references/dashboard-guidelines.md` | How to build a tracking dashboard: the `tracker.yaml` + weekly log format, day → week → Day 30/60/90 rollups, status rules, and the detailed and summary views. |
+| `templates/tracker.yaml`, `templates/log-week.yaml` | Starting points for a person's tracker and one week's log. |
+| `references/rendering/dashboard/` | A working Astro dashboard (mpstaton.com) with renderer-agnostic rollup logic in `tracker.ts`. |
 | `references/template-anatomy.md` | Which sections are the program's (keep their wording) and which are extensions. Read before restructuring anything. |
 | `references/example-plan.md` | One finished plan. The model for specificity and tone. Never copy its content into someone else's plan. |
 | `scripts/build-psp.sh`, `scripts/build-psp.py` | Turn a plan into Google-Docs-pasteable HTML and a .docx (needs `pandoc`). |
@@ -141,7 +144,48 @@ dressed as a goal ("lose weight", "make more money"):
    "What counts" list, a floor, a target, and an outcome reading. Check the
    floor is achievable on their worst realistic week.
 
-## Daily check-in
+## Logging (any rhythm, any agent)
+
+Progress lives in plain files that any assistant, or the person with a text
+editor, can update: `tracker.yaml` (the plan as numbers) and one
+`log/week-NN.yaml` per program week. Rules, from
+`references/dashboard-guidelines.md`:
+
+- **Log under the date it happened.** Catching up on Friday for Monday to
+  Thursday is normal: add each earlier date to the right week's file. Never
+  file Monday's numbers under Friday.
+- **A day that's listed is logged**; any habit missing from it counts as not
+  done. **A day that isn't listed is "not logged yet"** and never counts as
+  a miss. When catching up, ask about each missing day rather than assuming.
+- **Weekly loggers** can give week totals instead (`totals:`).
+- **Readings** (weight, income, ratings) go under `readings:` with the date
+  they were taken.
+- If you can't write files, give the person the exact YAML to paste.
+
+## Build a dashboard
+
+When someone wants to see their progress, or share it with a coach or the
+cohort:
+
+1. Turn their plan into `tracker.yaml` (`templates/tracker.yaml`): each
+   goal's "What counts" list becomes its process habits, with per-week floor
+   and target; the weekly action plan becomes `weeks:` overrides (the ramp,
+   the deloads); outcomes get their Day 0 baseline and 30/60/90 milestones.
+   Two to five habits per goal.
+2. Render it where they'll look at it: an artifact you build, a page on
+   their site (`references/rendering/dashboard/`), or a spreadsheet. Same
+   data, same rules.
+3. Always two levels: the **detailed week** (a 7-day grid per goal) for
+   them, and the **summary** (goals × weeks, plus the Day 30/60/90 cards)
+   for the coach and cohort, with the legend visible.
+4. Follow the status rules exactly; in particular, unlogged days are
+   hatched, never red, and an in-progress week shows "In progress" rather
+   than "Below floor".
+
+## Check-ins
+
+Some people check in daily, some weekly, some whenever they remember. Work
+with whatever rhythm they have; catching up is part of the system.
 
 - **Morning (about 5 minutes):** ask what they'll do today across their
   goals, and help them pick the one avoided task to do first. Protect the
@@ -150,8 +194,9 @@ dressed as a goal ("lose weight", "make more money"):
   goal's floor and target. Celebrate a floor hit as a win. If they missed,
   name the next concrete step for tomorrow morning: never miss twice.
 
-Keep a running tally in the conversation (or in a file, if they want one) so
-the weekly review doesn't rely on memory.
+Record what they did in their week's log file (see *Logging*), or keep a
+running tally in the conversation, so the weekly review doesn't rely on
+memory. If they haven't checked in for a few days, catch up day by day.
 
 ## Weekly review
 

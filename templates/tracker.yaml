@@ -1,0 +1,43 @@
+# tracker.yaml — your PSP as numbers. One per person.
+# Field reference: references/dashboard-guidelines.md
+# Pacing (floors, targets, milestones): references/goal-pacing.md
+
+person: Your Name
+cohort: LV___
+day_one: 2026-01-05          # Day 1 of your 100 days (any weekday)
+length_days: 100
+checkpoints: [30, 60, 90]
+deload_weeks: [8, 12]
+
+goals:
+  - id: goal-1
+    number: 1
+    kind: Personal            # Personal | Creative
+    area: ___                 # e.g. Body, Income, People
+    title: ___                # the one-line goal from your plan
+    process:                  # leading indicators: scored every week
+      - id: habit-a
+        label: ___            # a daily habit
+        cadence: daily        # daily | weekly | biweekly
+        measure: check        # check | count | minutes | amount
+        floor: 5              # days hit per week on a bad week
+        target: 7
+      - id: habit-b
+        label: ___            # a weekly habit that ramps
+        cadence: weekly
+        measure: count
+        floor: 1
+        target: 2
+        weeks:                # overrides carry forward from that week
+          4: { floor: 2, target: 3 }
+          8: { floor: 1, target: 1 }    # deload
+          9: { floor: 2, target: 3 }
+    outcomes:                 # lagging indicators: scored at Day 30/60/90
+      - id: outcome-a
+        label: ___
+        unit: ___
+        direction: up         # up | down
+        baseline: null        # { date: 2026-01-05, value: 0 } once measured
+        milestones: {}        # e.g. { 30: [lo, hi], 60: [lo, hi], 90: [lo, hi] }
+
+  # - id: goal-2 … (repeat for each goal on your form)

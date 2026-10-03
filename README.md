@@ -50,12 +50,27 @@ toolkit scores the process every week, and scores the outcome at Day 30,
 
 Full method: [`references/goal-pacing.md`](references/goal-pacing.md).
 
+## Tracking and dashboards
+
+Progress lives in two plain files any assistant (or a text editor) can
+update: `tracker.yaml`, the plan as numbers, and one log file per program
+week. They roll up from days to weeks to the Day 30/60/90 checkpoints,
+rendered as a detailed week view for you and a one-glance summary for your
+coach and cohort. Log daily, weekly, or in catch-up batches: days not yet
+logged never count as misses.
+
+Guidelines: [`references/dashboard-guidelines.md`](references/dashboard-guidelines.md).
+Live example: [mpstaton.com/psp/dashboard](https://mpstaton.com/psp/dashboard)
+(and [a sample with data](https://mpstaton.com/psp/dashboard/sample)).
+
 ## Layout
 
 ```
 hope-ai/
 ├── templates/
 │   ├── psp-blank.md            the program form, blank
+│   ├── tracker.yaml            the plan as numbers, for a dashboard
+│   ├── log-week.yaml           one program week's log
 │   └── goal-block-scored.md    the scored goal block (floors, targets, rules)
 ├── scripts/
 │   ├── build-psp.sh            markdown → pasteable HTML + .docx
@@ -63,9 +78,10 @@ hope-ai/
 │   └── package-skill.sh        builds the uploadable skill zip
 ├── references/
 │   ├── goal-pacing.md          the philosophy: leading indicators paced to an outcome
+│   ├── dashboard-guidelines.md tracking: tracker.yaml + weekly logs → week → Day 30/60/90
 │   ├── template-anatomy.md     program sections vs. member extensions
 │   ├── example-plan.md         one finished plan, identity details stripped
-│   └── rendering/              Astro page + CSS for rendering a plan on a site
+│   └── rendering/              Astro pattern for the plan page and the dashboard
 ├── context-v/
 │   └── agent-skills/personal-strategic-plan/SKILL.md
 ├── splash/                     the GitHub Pages site (Astro)

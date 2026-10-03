@@ -1,0 +1,15 @@
+# log/week-NN.yaml — what happened in one program week (Days 7N-6 … 7N).
+# Rules: references/dashboard-guidelines.md → "The data".
+#
+#   A day listed here is logged; habits missing from it count as not done.
+#   A day not listed is "not logged yet" and never shows as a miss.
+#   Catching up later? Add the earlier dates here; never move them.
+
+week: 1
+days:
+  2026-01-05:
+    habit-a: true
+    habit-b: 1               # weekly habits: log on the day they happened
+    note: ""                 # optional
+totals: {}                   # optional, for weekly loggers: { habit-b: 2 }
+readings: []                 # outcome measurements: - { date: 2026-01-05, outcome-a: 0 }
