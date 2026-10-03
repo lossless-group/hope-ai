@@ -10,6 +10,6 @@ days:
   2026-01-05:
     habit-a: true
     habit-b: 1               # weekly habits: log on the day they happened
-    note: ""                 # optional
+    note: ""                 # optional; keep it in quotes (a colon inside breaks YAML)
 totals: {}                   # optional, for weekly loggers: { habit-b: 2 }
 readings: []                 # outcome measurements: - { date: 2026-01-05, outcome-a: 0 }
