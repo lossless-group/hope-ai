@@ -9,7 +9,7 @@ secondary is downloading the skill zip and installing it in Claude.
 ## Local dev
 
 ```bash
-pnpm install --ignore-workspace
+pnpm install    # splash/ is its own pnpm workspace (pnpm-workspace.yaml)
 pnpm dev        # http://localhost:4321/hope-ai/
 pnpm build      # astro build + packages dist/personal-strategic-plan.zip
 pnpm preview    # exercise search and the zip download locally
@@ -18,6 +18,11 @@ pnpm preview    # exercise search and the zip download locally
 `pnpm build` runs `../scripts/package-skill.sh dist` after Astro, so the
 skill zip linked from the page is always built from the current skill,
 templates, and references.
+
+pnpm 12 refuses to run dependency build scripts until they're approved.
+Approvals live in `pnpm-workspace.yaml` (`allowBuilds:`); add one with
+`pnpm approve-builds <pkg>`. Don't install with `--ignore-workspace`: it
+skips those approvals and the install fails.
 
 ## Deploy
 
