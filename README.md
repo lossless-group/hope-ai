@@ -130,6 +130,10 @@ hope-ai/
 ├── references/
 │   ├── goal-pacing.md          the philosophy: leading indicators paced to an outcome
 │   ├── dashboard-guidelines.md tracking: tracker.yaml + weekly logs → week → Day 30/60/90
+│   ├── Weekly-Cadence.md       the Sunday-to-Saturday clock and the Sunday session
+│   ├── Weekly-Form.md          every question on the weekly form, and where its answer comes from
+│   ├── PSP-Folder-and-Modes.md one folder per member; folder, Project, or single chat
+│   ├── Outcome-Progress.md     how far each outcome has come and where it's heading
 │   ├── template-anatomy.md     program sections vs. member extensions
 │   ├── example-plan.md         one finished plan, identity details stripped
 │   └── rendering/              Astro pattern for the plan page and the dashboard
