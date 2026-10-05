@@ -24,6 +24,9 @@ export function formatDate(d: Date): string {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
+    // Frontmatter dates are calendar days (parsed as UTC midnight); format
+    // them in UTC so they don't slip a day west of Greenwich.
+    timeZone: 'UTC',
   });
 }
 

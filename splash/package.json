@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "private": true,
-  "description": "GitHub Pages splash for hope-ai \u2014 give Claude one link and start your 100-day Personal Strategic Plan.",
+  "description": "GitHub Pages splash for hope-ai — give Claude one link and start your 100-day Personal Strategic Plan.",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build && bash ../scripts/package-skill.sh dist",
@@ -12,11 +12,14 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
+    "@lossless-group/lfm": "npm:@jsr/lossless-group__lfm@^0.6.0",
     "astro": "^7.0.5",
     "astro-pagefind": "^2.0.0",
+    "mdast-util-to-string": "^4.0.0",
     "pagefind": "^1.5.2"
   },
   "devDependencies": {
+    "@types/mdast": "^4.0.4",
     "sharp": "^0.35.3"
   }
 }

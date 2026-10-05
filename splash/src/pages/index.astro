@@ -58,10 +58,38 @@ const inside = [
     stamp: 'ready',
     file: 'scripts/build-psp.sh',
   },
+  {
+    day: '05',
+    title: 'A dashboard, your way',
+    body: 'See your habits and your outcomes at a glance. Claude builds it around how you already keep track; if you have no preference, it sets up dailies, weeklies, biweeklies, and monthlies, each with a base and a stretch.',
+    stamp: 'new',
+    file: 'references/Dashboard-Dataviz.md',
+  },
+  {
+    day: '06',
+    title: 'Sunday, made easy',
+    body: 'The weekly form is due Sunday afternoon. Claude catches up your week, drafts every answer your log supports, and asks only for what you know. You paste it in.',
+    stamp: 'new',
+    file: 'references/Weekly-Form.md',
+  },
+  {
+    day: '07',
+    title: 'How far, and where to',
+    body: 'Every Sunday, each outcome shows how far you are from the start to the goal, and where your current pace lands you by Day 90. Information for the week; the score waits for the checkpoints.',
+    stamp: 'new',
+    file: 'references/Outcome-Progress.md',
+  },
+  {
+    day: '08',
+    title: 'One folder, any assistant',
+    body: 'Your plan, your logs, and your Sunday answers live in one folder. Claude, ChatGPT, or a text editor all work from it, whether that’s a connected folder, a Project, or a single chat.',
+    stamp: 'new',
+    file: 'references/PSP-Folder-and-Modes.md',
+  },
 ];
 
 const principles = [
-  ['Score the process weekly. The outcome monthly.', 'Weight and income are lagging indicators, scored at Day 30, 60, and 90. Fasting days, Zone 2 minutes, and calls made are the leading ones, scored every week.'],
+  ['Score the process weekly. Watch the outcome.', 'Fasting days, Zone 2 minutes, and calls made are leading indicators, scored every week. Weight and income are lagging ones: read every Sunday to show how far you’ve come, and scored at Day 30, 60, and 90.'],
   ['Paced to where you want to go.', 'Claude uses real rates to set each habit’s weekly dose, so keeping it gets you to the outcome. Bring a process goal instead, and it tells you what to expect.'],
   ['Layer, don’t stack.', 'Start smaller than feels like enough. Add one habit at a time, once the last one holds. Ambition belongs in the outcome, not in Week 1.'],
   ['A base and a stretch.', 'Base is your bad-week minimum, and hitting it counts as a win.'],
@@ -69,6 +97,8 @@ const principles = [
   ['Never miss twice.', 'One missed day is life. The next day is where the habit is decided.'],
   ['Rest on purpose.', 'Weeks 8 and 12 are deload weeks: base only, nothing new.'],
   ['Two check-ins a day.', 'Morning: what you will do. Evening: what you did. That fills the scorecard.'],
+  ['Not logged isn’t missed.', 'Catch up on Friday, or on Sunday. A day nobody wrote down yet is blank, never red.'],
+  ['A reason beside the result.', 'Missed a bar? Note why. It stays a miss, and your coach and buddy can see the context when they ask.'],
 ];
 
 const weeks = Array.from({ length: 12 }, (_, i) => i + 1);
@@ -175,6 +205,10 @@ const deload = new Set([8, 12]);
               <li>Start a new chat and say: <em>“Let's work on my PSP.”</em></li>
             </ol>
             <p class="card__note">
+              Tip: start your PSP inside a Claude <strong>Project</strong> and upload your files there, so
+              your plan and logs carry over from chat to chat.
+            </p>
+            <p class="card__note">
               Works on Free, Pro, Max, and Team plans. Steps from{' '}
               <a href="https://support.claude.com/en/articles/12512180-use-skills-in-claude" target="_blank" rel="noopener">Anthropic's help center</a>.
             </p>
@@ -247,6 +281,9 @@ const deload = new Set([8, 12]);
           <p class="chat__time mono">9:45 pm</p>
           <p class="bubble bubble--me">Did the walk and the water. No frog.</p>
           <p class="bubble bubble--ai">Two out of three on a travel day is your base, and that's a win. The frog moves to tomorrow morning, first thing. Never miss twice.</p>
+          <p class="chat__time mono">Sunday, 2:30 pm</p>
+          <p class="bubble bubble--me">Let's do my weekly form.</p>
+          <p class="bubble bubble--ai">Thursday and Saturday aren't logged yet. What happened? Then I'll draft your top three results and next week's declarations from your log. Breakthroughs are yours to write.</p>
         </div>
         <p class="card__note chat__note">
           An illustration of the check-in rhythm the skill is built around. The coaching steps
