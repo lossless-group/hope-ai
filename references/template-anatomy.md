@@ -33,9 +33,9 @@ Added in the example plan to make each goal checkable every week. The form
 neither asks for nor forbids them; they paste into the Google Doc fine.
 
 - **How I keep score**: an H2 of scoring principles, placed before PERSONAL GOALS.
-- **Weekly scorecard**: `Goal | What I count | Floor | Target`, for the accountability partner.
-- **Per goal**: `What counts:` list, `How I score it:` with floor and target, `Rules:`.
-- **Floor / Target column** inserted into the weekly action plan, and the
+- **Weekly scorecard**: `Goal | What I count | Base | Stretch`, for the accountability partner.
+- **Per goal**: `What counts:` list, `How I score it:` with base and stretch, `Rules:`.
+- **Base / Stretch column** inserted into the weekly action plan, and the
   Action column reframed as "By end of week" (cumulative standards, not one-off tasks).
 - **Deload weeks** at 8 and 12.
 - **H4 protocols** under a goal (`#### **Hydration protocol**`, etc.) holding the standards the "What counts" list references.

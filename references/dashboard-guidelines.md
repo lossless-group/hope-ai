@@ -28,27 +28,33 @@ Three levels, each computed from the one below:
 
 1. **Day**: what was done, per process goal. Entered in the log.
 2. **Week** (a 7-day cycle from Day 1): each process goal's week total,
-   scored against that week's floor and target. Each goal gets a week status.
+   scored against that week's base and stretch. Each goal gets a week
+   status. Each outcome gets a reading, plotted as a trend with no status.
 3. **Checkpoint** (Day 30, 60, 90): cumulative process totals against the
    paced plan, and each outcome against its milestone (see `goal-pacing.md`).
 
 ## Principles
 
-- **Weeks are program weeks, not calendar weeks.** Week 1 is Days 1–7
-  counted from the person's Day 1, whatever weekday that is. Days 99–100
-  form a short Week 15.
+- **Weeks are program weeks, on the cohort's clock.** By default Week 1 is
+  Days 1–7 counted from the person's Day 1, whatever weekday that is, and
+  Days 99–100 form a short Week 15. If the cohort runs on a fixed weekly
+  clock (the weekly form is due Sunday afternoon, so weeks run Sunday to
+  Saturday), set `week_starts: sunday`: Week 1 becomes the part-week from
+  Day 1 to the first Saturday, every later week starts on a Sunday, and short
+  first and last weeks have their base and stretch prorated.
 - **"Not logged" is never "missed".** A day nobody has written down yet is
   blank, not red. People log late, in batches, or weekly: catching up on
   Friday for Monday through Thursday is normal and fully supported. Only a
   day that *was* logged, without the habit, counts as not done.
-- **Score the process weekly; score outcomes at checkpoints.** Outcomes
-  never appear on the weekly grid.
-- **Floors are wins.** A floor week is shown as success, not as "partial".
-  Target is a better week, not the only good one.
+- **Score the process weekly; read outcomes weekly as a trend, score them
+  at checkpoints.** Outcomes never appear as cells on the weekly grid, and
+  a weekly reading never gets a status color.
+- **Base is a win.** A base week is shown as success, not as "partial".
+  Stretch is a better week, not the only good one.
 - **Ceilings count too.** For "no more than" goals (carb meals, hours
   worked), staying under is the win and going over is the miss.
 - **The plan ramps, so the bar moves.** Each week is scored against *that
-  week's* floor and target, including deload weeks (8 and 12 by default).
+  week's* base and stretch, including deload weeks (8 and 12 by default).
 - **The summary has to stand alone.** A coach who has never seen the plan
   should be able to read the summary with only its legend.
 - **Public by choice.** Dashboards often hold health and money details. The
@@ -65,6 +71,7 @@ Written once at the start, revised at weekly reviews. Template:
 person: Your Name
 cohort: LV236
 day_one: 2026-09-28        # Day 1 (any weekday)
+week_starts: sunday        # optional: the cohort's weekly clock
 length_days: 100
 checkpoints: [30, 60, 90]
 deload_weeks: [8, 12]
@@ -78,27 +85,27 @@ goals:
     process:                # leading indicators, scored weekly
       - id: am-move
         label: Morning move
-        cadence: daily      # daily | weekly | biweekly
-        measure: check      # check (yes/no) | count | minutes | amount
-        floor: 5            # per week: days hit (daily checks) or total
-        target: 7
+        cadence: daily      # daily | weekly | biweekly | monthly
+        measure: check      # check (yes/no) | count | minutes | hours | amount
+        base: 5             # per week: days hit (daily checks) or total
+        stretch: 7
       - id: resistance
         label: Resistance sessions
         cadence: weekly
         measure: count
-        floor: 2
-        target: 3
+        base: 2
+        stretch: 3
         weeks:              # the ramp: overrides carry forward from that week on
-          3: { floor: 3, target: 4 }
-          8: { floor: 2, target: 2 }   # deload
-          9: { floor: 3, target: 4 }
+          3: { base: 3, stretch: 4 }
+          8: { base: 2, stretch: 2 }   # deload
+          9: { base: 3, stretch: 4 }
       - id: carb-meals
         label: Carb meals
         cadence: weekly
         measure: count
         direction: down     # a ceiling: lower is better
-        target: 4           # the limit
-    outcomes:               # lagging indicators, scored at checkpoints
+        stretch: 4          # the limit
+    outcomes:               # lagging indicators: read weekly, scored at checkpoints
       - id: weight
         label: Weight
         unit: lb
@@ -111,11 +118,16 @@ Field rules:
 
 | Field | Meaning |
 |---|---|
-| `cadence: daily` | Logged per day. The week value is days hit (`check`) or the sum (`count`, `minutes`, `amount`). Floor and target are per week. |
-| `cadence: weekly` | Logged on the day it happened, or as a week total. Floor and target are per week. |
-| `cadence: biweekly` | Scored over two-week windows (Weeks 1–2, 3–4, …). Floor and target are per window. |
-| `direction: down` | A ceiling. `target` is the limit; at or under is a win. |
-| `floor` omitted | A bonus habit: counted and shown, never a miss. |
+| `measure` | Two shapes of process habit. Frequency checks: did it happen (`check`) or how many times (`count`). Quantities: how much (`minutes`, `hours`, `amount`). |
+| `projection: none` | On an outcome: it's a level read as it stands (a monthly income run-rate), so the dashboard shows progress against the goal's range but doesn't project a rate forward. Default `linear`: the rate from baseline to latest reading, extended to the goal's day. |
+| `aggregate: max` | The week's value is the best single entry, not the sum. For something continuous, like a fast's longest stretch in hours: 24 h against a 36 h bar shows as two-thirds done, not a miss, and two 20-hour fasts don't make a 40-hour one. Log it on the day it started. Never prorated in a short week. |
+| `cadence: daily` | Logged per day. The week value is days hit (`check`) or the sum (`count`, `minutes`, `amount`). Base and stretch are per week. |
+| `cadence: weekly` | Logged on the day it happened, or as a week total. Base and stretch are per week. |
+| `cadence: biweekly` | Scored over two-week windows (Weeks 1–2, 3–4, …), shown on the grid in the last week of each window. Base and stretch are per window. |
+| `cadence: monthly` | Scored over four-week windows (Weeks 1–4, 5–8, 9–12, 13–15), shown on the grid in the last week of each window, like biweekly. Base and stretch are per window; the short last window is prorated. |
+| `direction: down` | A ceiling. The single number is the limit, written as `stretch:`; at or under is a win. |
+| `base` omitted | A bonus habit: never a miss. Done that week, it shows green ("Bonus"), a win like any other; not done, it shows neutral ("Optional"). |
+| `floor:` / `target:` | Legacy names, still read as aliases of `base:` / `stretch:`, so older tracker files keep working. |
 | `weeks:` | Overrides by program week, carried forward until the next override. This is how the ramp and the deloads are encoded. |
 | `milestones` | Per checkpoint, a single value or a `[low, high]` range. Omit when not yet paced; the dashboard shows "not paced yet". |
 
@@ -135,11 +147,19 @@ days:                       # a day appears here once it's logged
     note: Travel day.       # optional, free text
 totals:                     # optional: week totals for anyone who logs weekly
   carb-meals: 3             # a total here wins over summing the days
-readings:                   # outcome measurements, any day
+reasons:                    # optional: context for a result, by habit or goal id
+  calls: "Contacts not imported into my email system yet."
+readings:                   # one per outcome each week, at the Sunday session
   - { date: 2026-10-12, weight: 207.2 }
 ```
 
 Logging rules, for people and agents alike:
+
+- **Reasons sit beside a result, never replace it.** A missed bar with a
+  reason still shows as missed; the reason opens from an ⓘ next to the
+  status (and as a dot on the summary grid). Use them for what got in the
+  way, a blocker, or a deliberate trade-off. Agents ask for one on a miss,
+  never invent one.
 
 - **A day present = logged.** Within a logged day, any habit not listed
   counts as not done (`false` or 0).
@@ -147,8 +167,10 @@ Logging rules, for people and agents alike:
 - **Backfill by date.** Catching up later means adding the earlier dates to
   the right week's file. Never put Monday's numbers under Friday.
 - **Weekly loggers** can skip `days` entirely and write `totals`.
-- **Readings** go wherever they were taken; the checkpoint uses the
-  reading closest to that day (within a week either side).
+- **Readings every week.** During the Sunday weekly session, log a reading
+  for each outcome under `readings:` in that week's file, dated the day it
+  was taken. The checkpoint uses the reading closest to that day (within a
+  week either side).
 - **Edit freely.** Correcting a number is just editing the file.
 
 ## The views
@@ -159,52 +181,59 @@ Logging rules, for people and agents alike:
 - Per goal, a 7-column grid, one column per day (weekday, date, Day N).
   - **Daily habits** as rows: ✓ done, a number for counts, a faint dot for
     logged-but-not-done, blank for not logged, a hatched cell for future days.
-  - A week column at the right: total against floor and target, with a
+  - A week column at the right: total against base and stretch, with a
     status chip.
-- **Weekly and biweekly habits** as progress bars toward the target, with
-  the floor marked.
-- Readings taken this week, if any.
+- **Weekly, biweekly, and monthly habits** as progress bars toward stretch,
+  with base marked.
+- This week's outcome readings, with no status color.
 - Previous and next week links, and a jump to the summary.
 - **Never miss twice:** flag a daily habit with two logged misses in a row.
 
 ### Summary: the 100 days (for coach and cohort)
 
 - **Goals × weeks grid.** One row per goal, one cell per week:
-  - target (filled), floor (filled, lighter), miss (outlined, warm color),
+  - Stretch hit (filled), Base met (filled, lighter), Below base (outlined,
+    warm color),
   - in progress (current week), not logged / partly logged (hatched),
     future (empty).
+- **Outcome trends.** One small line chart per outcome: the weekly readings
+  against its paced band (baseline to the Day 30, 60, and 90 milestones,
+  interpolated between them). No status color week to week; the band is
+  context, not a grade.
 - **Checkpoint cards**, Day 30, 60, and 90. For each goal: process done as a
   share of the paced plan to that day, and each outcome against its
   milestone (ahead, on pace, behind, or "not paced yet").
 - **This week so far**, one line per goal.
 - **A legend**, always visible.
-- **Plain words.** "Floor met" not "≥ f". Goal names, not ids.
+- **Plain words.** "Base met" not "≥ b". Goal names, not ids.
 
 ### Status rules
 
-For one process habit in one week (or biweekly window):
+For one process habit in one week (or biweekly or monthly window):
 
 | Status | Rule (up) | Rule (ceiling, `direction: down`) |
 |---|---|---|
-| target | value ≥ target | value ≤ target |
-| floor | floor ≤ value < target | — |
-| miss | value < floor | value > target |
-| bonus | no floor: shown, never a miss | — |
+| Stretch hit | value ≥ stretch | value ≤ stretch |
+| Base met | base ≤ value < stretch | — |
+| Below base | value < base | value > stretch |
+| Bonus | no base, and done: green, a win | — |
+| Optional | no base, not done: neutral, never a miss | — |
 
-For a goal in one week: **miss** if any habit missed, otherwise **floor**
-if any habit is at floor, otherwise **target**. A week that isn't over is
+For a goal in one week: **Below base** if any habit is below base,
+otherwise **Base met** if any habit is at base, otherwise **Stretch hit**. A week that isn't over is
 **in progress**. A finished week with unlogged days is scored on what was
 logged and marked **partly logged**.
 
 For a checkpoint: process **on pace** if the cumulative total is at or above
-the cumulative floor to that day (daily and weekly expectations prorated
-for a partial week), **ahead** at or above the cumulative target. Outcomes
+the cumulative base to that day (daily and weekly expectations prorated
+for a partial week), **ahead** at or above the cumulative stretch. Outcomes
 compare the closest reading with the milestone, respecting `direction`.
+This is the only place an outcome gets an on-track or behind verdict.
 
 ## Building one for someone
 
 1. **Turn the plan into `tracker.yaml`.** Each goal's "What counts" list
-   becomes its `process` habits; its floor and target become numbers; its
+   becomes its `process` habits; its base and stretch become numbers; its
    weekly action plan becomes `weeks:` overrides; its outcomes and 30/60/90
    milestones (paced per `goal-pacing.md`) become `outcomes`.
 2. **Keep it small.** Two to five habits per goal. If the plan has more,

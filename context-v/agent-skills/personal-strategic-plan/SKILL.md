@@ -1,6 +1,6 @@
 ---
 name: personal-strategic-plan
-description: Help someone draft, score, revise, check in on, and export their ChoiceCenter Personal Strategic Plan (PSP), the 100-day goal document used in the Leadership Legacy (LV) coaching program. Use whenever the user mentions "PSP", "Personal Strategic Plan", "ChoiceCenter", "Leadership Legacy", an "LV" cohort, their 100-day plan or goals, their weekly action plan, floors and targets, the weekly scorecard, or a morning or evening check-in against their goals; whenever a goal needs rewriting into measurable weekly actions, or an outcome goal ("lose 30 pounds", "double my income") needs turning into paced process goals (leading indicators) with a realistic projected outcome; whenever someone is taking on too many new habits at once; or whenever a plan needs to go back into the program's shared Google Doc.
+description: Help someone draft, score, revise, check in on, and export their ChoiceCenter Personal Strategic Plan (PSP), the 100-day goal document used in the Leadership Legacy (LV) coaching program. Use whenever the user mentions "PSP", "Personal Strategic Plan", "ChoiceCenter", "Leadership Legacy", an "LV" cohort, their 100-day plan or goals, their weekly action plan, base and stretch numbers, the weekly scorecard, or a morning or evening check-in against their goals; whenever a goal needs rewriting into measurable weekly actions, or an outcome goal ("lose 30 pounds", "double my income") needs turning into paced process goals (leading indicators) with a realistic projected outcome; whenever someone is taking on too many new habits at once; or whenever a plan needs to go back into the program's shared Google Doc.
 ---
 
 # Personal Strategic Plan
@@ -37,7 +37,8 @@ the **leading indicators** that drive them: fasting days, keto days, minutes
 in Zone 2, calls made, evenings in the studio. This toolkit **scores the
 process every week and scores the outcome at Day 30, 60, and 90** against
 paced milestones (the program form's "By 30 / 60 / 90 Days" table), with a
-Day 0 baseline. Never week to week: a month is long enough for the outcome
+Day 0 baseline. The outcome gets a reading every week, watched as a trend,
+but it is never graded week to week: a month is long enough for the outcome
 to show whether the process is right.
 
 Two moves follow, depending on what the member brings:
@@ -74,9 +75,10 @@ and money numbers, and two worked examples.
   replace. When their answer is vague, ask one follow-up rather than inventing.
 - **Score the process, read the outcome.** A week is scored on what the
   member did, never on what happened as a result. Every process goal gets a
-  floor (their bad-week minimum, which counts as a win) and a target (a good
-  week). Outcomes are scored only at the Day 30, 60, and 90 checkpoints,
-  against paced milestones; never put them on the weekly scorecard.
+  base (their bad-week minimum, which counts as a win) and a stretch (a good
+  week). Outcomes are read weekly as a trend but scored only at the Day 30,
+  60, and 90 checkpoints, against paced milestones; never put them on the
+  weekly scorecard.
 - **Pace with real numbers, conservatively.** Use evidence-based rates and
   give ranges, not false precision. Say when a number is a general estimate.
   For health goals, stay within safe rates (sustained fat loss is roughly
@@ -118,7 +120,7 @@ and money numbers, and two worked examples.
      a range. Note the Day 0 baseline the outcome is measured from.
 4. **Offer the scoring layer** (`templates/goal-block-scored.md`) once a goal
    is drafted: what counts (several kinds of action, so a hard day still
-   counts), how it's scored, a floor and a target, the pacing math, the
+   counts), how it's scored, a base and a stretch, the pacing math, the
    Day 0 baseline and 30/60/90 outcome milestones, and a few rules. Offer it; don't force it.
 5. **Check the whole load.** Before the closing sections, add up what all
    the goals ask for in a typical day and in Week 1. If it's more than they
@@ -141,8 +143,8 @@ dressed as a goal ("lose weight", "make more money"):
 3. Check the candidates against what's known to drive the outcome; suggest
    any strong lever they've missed.
 4. Pace them (see `references/goal-pacing.md`) and turn the result into a
-   "What counts" list, a floor, a target, and an outcome reading. Check the
-   floor is achievable on their worst realistic week.
+   "What counts" list, a base, a stretch, and an outcome reading. Check the
+   base is achievable on their worst realistic week.
 
 ## Logging (any rhythm, any agent)
 
@@ -158,8 +160,12 @@ editor, can update: `tracker.yaml` (the plan as numbers) and one
   done. **A day that isn't listed is "not logged yet"** and never counts as
   a miss. When catching up, ask about each missing day rather than assuming.
 - **Weekly loggers** can give week totals instead (`totals:`).
-- **Readings** (weight, income, ratings) go under `readings:` with the date
-  they were taken.
+- **Readings every week.** During the Sunday weekly session, log a reading
+  for each outcome (weight, income, ratings) under `readings:` in that
+  week's file, with the date it was taken.
+- **Habits come in two shapes:** frequency checks (did it happen, or how
+  many times: `measure: check` or `count`) and quantities (`minutes`,
+  `amount`). Cadence is `daily`, `weekly`, `biweekly`, or `monthly`.
 - If you can't write files, give the person the exact YAML to paste.
 
 ## Build a dashboard
@@ -168,19 +174,26 @@ When someone wants to see their progress, or share it with a coach or the
 cohort:
 
 1. Turn their plan into `tracker.yaml` (`templates/tracker.yaml`): each
-   goal's "What counts" list becomes its process habits, with per-week floor
-   and target; the weekly action plan becomes `weeks:` overrides (the ramp,
-   the deloads); outcomes get their Day 0 baseline and 30/60/90 milestones.
-   Two to five habits per goal.
+   goal's "What counts" list becomes its process habits, with per-week base
+   and stretch (`base:` / `stretch:`; for a "no more than" habit the limit
+   goes in `stretch:`); the weekly action plan becomes `weeks:` overrides
+   (the ramp, the deloads); outcomes get their Day 0 baseline and 30/60/90
+   milestones.
+   Two to five habits per goal. A `biweekly` or `monthly` habit is scored
+   over its two- or four-week window (Weeks 1–4, 5–8, 9–12, 13–15 for
+   monthly, the short last one prorated), with base and stretch per window.
 2. Render it where they'll look at it: an artifact you build, a page on
    their site (`references/rendering/dashboard/`), or a spreadsheet. Same
    data, same rules.
 3. Always two levels: the **detailed week** (a 7-day grid per goal) for
    them, and the **summary** (goals × weeks, plus the Day 30/60/90 cards)
-   for the coach and cohort, with the legend visible.
+   for the coach and cohort, with the legend visible. Show each outcome as
+   a trend line of its weekly readings against its paced band (baseline to
+   the Day 30/60/90 milestones), with no status color; outcomes never get a
+   cell on the weekly grid.
 4. Follow the status rules exactly; in particular, unlogged days are
    hatched, never red, and an in-progress week shows "In progress" rather
-   than "Below floor".
+   than "Below base". Statuses read "Stretch hit", "Base met", "Below base".
 
 ## Check-ins
 
@@ -188,10 +201,10 @@ Some people check in daily, some weekly, some whenever they remember. Work
 with whatever rhythm they have; catching up is part of the system.
 
 - **Morning (about 5 minutes):** ask what they'll do today across their
-  goals, and help them pick the one avoided task to do first. Protect the
-  floors on a hard day rather than adding more.
+  goals, and help them pick the one avoided task to do first. Protect base
+  on a hard day rather than adding more.
 - **Evening (about 5 minutes):** ask what they did. Count it against each
-  goal's floor and target. Celebrate a floor hit as a win. If they missed,
+  goal's base and stretch. Celebrate hitting base as a win. If they missed,
   name the next concrete step for tomorrow morning: never miss twice.
 
 Record what they did in their week's log file (see *Logging*), or keep a
@@ -200,10 +213,12 @@ memory. If they haven't checked in for a few days, catch up day by day.
 
 ## Weekly review
 
-Once a week: total the week against each floor and target, name what worked
-and the one thing to change, then rewrite the remaining weeks of the plan if
-reality has moved. If they're consistently beating the target, resist adding
-more right away; let the habit settle for another week first.
+Once a week, at the Sunday session: total the week against each base and
+stretch, log a reading for each outcome, name what worked and the one thing
+to change, then rewrite the remaining weeks of the plan if reality has
+moved. Note the outcome trend, but don't grade it. If they're consistently
+beating stretch, resist adding more right away; let the habit settle for
+another week first.
 
 ## 30 / 60 / 90 checkpoints
 
@@ -215,7 +230,7 @@ milestone, next to the process totals for the same period. Then:
   Revisit them with real rates, and adjust the process or the remaining
   milestones, openly.
 - **Process behind:** that's the thing to fix, not the outcome. Find what
-  made the floor hard and make it easier.
+  made base hard and make it easier.
 
 It's information about the plan, not a verdict on the person. The plan is a starting position, not a contract with the
 past.

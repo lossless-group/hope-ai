@@ -4,12 +4,20 @@
 #   A day listed here is logged; habits missing from it count as not done.
 #   A day not listed is "not logged yet" and never shows as a miss.
 #   Catching up later? Add the earlier dates here; never move them.
+#   Biweekly and monthly habits: log them on the day they happened, in
+#   whichever week that falls; the dashboard adds up the window.
 
 week: 1
 days:
   2026-01-05:
-    habit-a: true
-    habit-b: 1               # weekly habits: log on the day they happened
+    daily-check: true
+    daily-minutes: 20
+    weekly-count: 1          # weekly habits: log on the day they happened
     note: ""                 # optional; keep it in quotes (a colon inside breaks YAML)
-totals: {}                   # optional, for weekly loggers: { habit-b: 2 }
-readings: []                 # outcome measurements: - { date: 2026-01-05, outcome-a: 0 }
+  2026-01-08:
+    daily-check: true
+    monthly-check: true      # done this month (Weeks 1–4)
+totals: {}                   # optional, for weekly loggers: { weekly-count: 2, weekly-limit: 1 }
+reasons: {}                  # optional context, by habit or goal id: { weekly-count: "sick Tue–Thu" }
+readings:                    # every Sunday: one reading per outcome, dated the day you took it
+  - { date: 2026-01-11, outcome-a: 0, outcome-b: 5 }

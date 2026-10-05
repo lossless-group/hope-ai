@@ -32,13 +32,64 @@ If Claude says it can't open the link, make sure web search is on for the chat.
 
 Steps per [Anthropic's help center](https://support.claude.com/en/articles/12512180-use-skills-in-claude).
 
+## Pick where your PSP lives (do this once)
+
+Your plan, your tracking, and your weekly form answers live together in **one
+folder**. Claude (or ChatGPT) will ask where it is the first time. How the
+files get updated depends on how you use your assistant:
+
+| How you use it | What happens | What you do |
+|---|---|---|
+| **An assistant that can open a folder** (Claude Code, Claude desktop with a folder connected, Codex) | It reads and updates your files itself. | Tell it the folder path once. |
+| **A Project** (Claude Project or ChatGPT Project) | Files you upload stay with the project across chats, but the assistant can't change them in place. | At the end of each session, download the updated file it gives you and re-upload it to the project, replacing the old one. |
+| **A single chat** (no project) | Everything lives in that one conversation. | **Stay in that same chat for all 100 days.** To start a new chat, download your latest files first and attach them to the new one. |
+
+If you're not sure, use a Project: it's the easiest way to keep your plan
+from getting lost between chats.
+
+The folder looks like this:
+
+```
+my-psp/
+├── plan.md                  your PSP, in the program's wording
+├── tracker.yaml             the plan as numbers (base, stretch, milestones)
+├── log/week-01.yaml         what you did, by date, one file per program week
+├── weekly-form/week-01.md   that Sunday's form answers, as you submitted them
+└── private/people.yaml      loved ones, enrolling conversations, your team list
+```
+
+Keep this folder private. If you publish your dashboard anywhere, leave
+`private/` out: it holds other people's names.
+
+## Every Sunday: the weekly form
+
+ChoiceCenter's weekly PSP roadmap form is due **Sunday afternoon**. Tracking
+during the week is what makes Sunday quick. On Sunday, say *"Let's do my weekly
+form"* and your assistant will:
+
+1. Catch up any days you haven't logged, asking about each one (never guessing).
+2. Score the week against each goal's base and stretch, and log this
+   week's reading for each outcome.
+3. Draft every answer it can from your log: week number, your top 3 results,
+   on/off track, this week's declarations, which daily practices you kept,
+   books finished, loved ones enrolled to date.
+4. Ask you for what only you know: breakthroughs, by-when times, the people
+   you'll talk with, and whether a practice was done "in excellence."
+5. Save your final answers and next week's declarations, so next Sunday's
+   "Top 3 results" can be drafted from them.
+
+You paste the answers into the form yourself; nothing is submitted for you.
+During the week, ask *"Where am I this week?"* any time to see what's left
+before Sunday.
+
 ## The philosophy
 
 Outcomes (weight, income, a finished album) are **lagging indicators**: you
 can want them, but you can't do them. Process goals (fasting days, Zone 2
 minutes, calls made) are the **leading indicators** that drive them. The
-toolkit scores the process every week, and scores the outcome at Day 30,
-60, and 90 against paced milestones (the program form's own checkpoints).
+toolkit scores the process every week, reads the outcome weekly as a
+trend, and scores it only at Day 30, 60, and 90 against paced milestones
+(the program form's own checkpoints).
 
 - Bring an **outcome**, and Claude finds the process goals behind it and
   **paces** them with realistic rates, setting where you should be at Day
@@ -52,9 +103,9 @@ Full method: [`references/goal-pacing.md`](references/goal-pacing.md).
 
 ## Tracking and dashboards
 
-Progress lives in two plain files any assistant (or a text editor) can
-update: `tracker.yaml`, the plan as numbers, and one log file per program
-week. They roll up from days to weeks to the Day 30/60/90 checkpoints,
+Progress lives in plain files in your PSP folder that any assistant (or a
+text editor) can update: `tracker.yaml`, the plan as numbers, and one log
+file per program week. They roll up from days to weeks to the Day 30/60/90 checkpoints,
 rendered as a detailed week view for you and a one-glance summary for your
 coach and cohort. Log daily, weekly, or in catch-up batches: days not yet
 logged never count as misses.
@@ -71,7 +122,7 @@ hope-ai/
 │   ├── psp-blank.md            the program form, blank
 │   ├── tracker.yaml            the plan as numbers, for a dashboard
 │   ├── log-week.yaml           one program week's log
-│   └── goal-block-scored.md    the scored goal block (floors, targets, rules)
+│   └── goal-block-scored.md    the scored goal block (base, stretch, rules)
 ├── scripts/
 │   ├── build-psp.sh            markdown → pasteable HTML + .docx
 │   ├── build-psp.py            inline-styles pandoc HTML for Google Docs
@@ -83,7 +134,8 @@ hope-ai/
 │   ├── example-plan.md         one finished plan, identity details stripped
 │   └── rendering/              Astro pattern for the plan page and the dashboard
 ├── context-v/
-│   └── agent-skills/personal-strategic-plan/SKILL.md
+│   ├── agent-skills/personal-strategic-plan/SKILL.md
+│   └── specs/                  what's being designed next (dashboard, weekly form)
 ├── splash/                     the GitHub Pages site (Astro)
 └── changelog/
 ```

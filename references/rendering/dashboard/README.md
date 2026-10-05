@@ -12,6 +12,7 @@ Copy and adapt; this isn't a package. The spec it implements is
 | `components/DashboardPage.astro` | Page chrome, sample banner. |
 | `components/SummaryView.astro` | Goals × weeks grid, Day 30/60/90 cards, this week so far. |
 | `components/WeekView.astro` | The 7-day detail grid per goal. |
+| `components/OutcomesPanel.astro` | Top of the week view: a stat tile per outcome (latest reading, a start-to-goal meter, and where the current rate lands by the goal's day). |
 | `components/StatusLegend.astro` | The always-on legend. |
 | `psp-dashboard.css` | Styles, built on the host site's semantic color tokens. |
 | `example/` | The fictional sample dataset (four goals, six weeks of logs, including unlogged days, a rough week, and a weekly-totals logger). |

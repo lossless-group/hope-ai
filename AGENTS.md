@@ -24,6 +24,7 @@ unless asked.
 | `scripts/package-skill.sh` | builds `personal-strategic-plan.zip` for Claude's Customize → Skills upload; the splash build runs it |
 | `splash/` | GitHub Pages site (Astro), deployed on push to `main`; see `splash/README.md` and `splash/DESIGN.md` |
 | `changelog/` | ship log, per `changelog-conventions` |
+| `context-v/specs/` | specs in progress; `Progress-Dashboard-for-Flexible-PSP-Dataviz.md` covers the dashboard, the PSP working folder, and the weekly form |
 
 ## Rules
 
@@ -43,9 +44,31 @@ unless asked.
   the rollup rules, change `references/dashboard-guidelines.md` and
   `references/rendering/dashboard/tracker.ts` together, and port the change
   back to the site (or note that it's pending).
-- **This repo is public.** Never commit a member's filled-in plan, and never
-  commit identity details (phone, email, address, handles). The one example
-  plan is already published on mpstaton-site and has its identity table stripped.
+- **This repo is public.** Never commit a member's filled-in plan, logs, or
+  weekly form answers, and never commit identity details (phone, email,
+  address, handles). The one example plan is already published on
+  mpstaton-site and has its identity table stripped.
+- **Other people's names are the most private data.** The weekly form asks
+  for loved ones, enrolling conversations, a buddy's email, and team members.
+  These go in the member's `private/` folder only: never in this repo, never
+  in examples (use fictional people), never on a shared dashboard unless the
+  member adds them. mpstaton-site is a public repo too.
+- **One PSP folder per member.** Plan, `tracker.yaml`, `log/`, `weekly-form/`,
+  and `private/` live together in a folder the member chooses (layout in the
+  README). Ask for its location on first run; don't scatter files elsewhere.
+- **Know which mode you're in and say so.** If you can write files, update
+  the folder directly. In a Claude or ChatGPT Project, hand back the changed
+  files at the end of each session to re-upload. In a single chat, tell the
+  member plainly to stay in that chat, or download and re-attach their files
+  to start a new one, and remind them each Sunday.
+- **Sunday afternoon is the deadline.** The weekly form is due then, and it is
+  what tracking is for. Draft what the log supports, ask for the rest, never
+  invent a result or tick a box the member didn't confirm, and never submit
+  the form for them. Form answers use the form's exact wording and option
+  text (including its book list as written).
+- **Honest answers over passing ones.** "On track?" and "Is your declaration
+  10-15% of your goal?" are answered from the data. If the answer is No, say
+  No. The open questions on that rule are in the dashboard spec.
 - **The skill has to work inside the Claude app.** Its readers are usually
   non-technical cohort members. Paths in `SKILL.md` must resolve both from the
   repo root and from the zip's skill folder (`package-skill.sh` mirrors the

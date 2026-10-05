@@ -19,14 +19,15 @@ So the plan has two layers:
 
 | Layer | What it is | How it's treated |
 |---|---|---|
-| **Process goals** (leading) | Actions you take | **Scored every week** against a floor and a target |
-| **Outcome** (lagging) | The result you want | **Scored at Day 30, 60, and 90** against paced milestones, with Day 0 as the baseline. Never week to week. |
+| **Process goals** (leading) | Actions you take | **Scored every week** against a base and a stretch |
+| **Outcome** (lagging) | The result you want | **Read every week** as a trend against its paced milestones; **scored only at Day 30, 60, and 90**, with Day 0 as the baseline. Never graded week to week. |
 
 The outcome stays in the plan. It's the reason for the process goals, and
 the 30/60/90 checkpoints, which the program's form already asks for ("By 30
 Days / By 60 Days / By 90 Days"), are where you check it. Weekly, it's too
-noisy to grade: a good week of process can show nothing on the scale. Over
-a month, if the process is right, the outcome moves.
+noisy to grade: a good week of process can show nothing on the scale. So
+it's read every week and watched as a trend line, but not graded. Over a
+month, if the process is right, the outcome moves.
 
 ## Two directions, one method
 
@@ -54,8 +55,8 @@ a month, if the process is right, the outcome moves.
    first month usually moves less than the last (weight is the exception
    that runs the other way, since early low-carb drops are mostly water).
 6. **Score the process weekly, the outcome at the checkpoints.** The weekly
-   scorecard counts the levers. The outcome is measured at Day 0 and scored
-   against its milestone at Day 30, 60, and 90.
+   scorecard counts the levers. The outcome is measured at Day 0, read each
+   week as a trend, and scored against its milestone at Day 30, 60, and 90.
 
 ### When someone brings a process goal ("walk every day", "call three people a week")
 
@@ -74,7 +75,7 @@ a month, if the process is right, the outcome moves.
 The most common way these plans fail is ambition: too many new habits,
 started all at once, at full dose. The toolkit's default is the opposite.
 
-- **Start below what feels like enough.** Week 1's floor should be easy on
+- **Start below what feels like enough.** Week 1's base should be easy on
   the worst realistic week: travel, illness, a bad night.
 - **Add one thing at a time.** A new habit joins once the previous one is
   holding, typically a week or two later. The weekly action plan is a ramp
@@ -83,10 +84,10 @@ started all at once, at full dose. The toolkit's default is the opposite.
   sprints add one a week; an income target climbs across the quarter.
 - **Count the total load across goals.** Five goals each asking for "just
   30 minutes a day" is 2.5 hours. Add it up and say so.
-- **Deload on purpose.** Weeks 8 and 12 drop to the floors.
+- **Deload on purpose.** Weeks 8 and 12 drop to base.
 - **Put a ceiling on the over-doers.** For someone who tends to overwork,
   exceeding the ceiling (hours worked, editing time) counts as a miss, the
-  same as missing the floor.
+  same as falling below base.
 
 When a member arrives with an ambitious plan, the skill's job is to keep the
 ambition in the *outcome* and make the *process* gentle enough to keep:
@@ -127,11 +128,11 @@ Member: *"I want to lose a lot of weight. Like 30 pounds."*
    day 100 is ambitious but plausible, and the habits carry you to 30 after."
 3. **Levers, paced and layered:**
    - Weeks 1–2: a 10-minute walk after lunch and dinner; no sugary drinks.
-     (Floor: 10 of 14 walks.)
+     (Base: 10 of 14 walks.)
    - Week 3: add low-carb breakfast and lunch on 5 of 7 days.
    - Week 5: add two Zone 2 sessions of 30 minutes, then three from Week 7.
    - Week 6: add one longer fast a week, if the doctor agrees.
-   - Weeks 8 and 12: deload to the floors.
+   - Weeks 8 and 12: deload to base.
 4. **Scored weekly:** walks, low-carb days, Zone 2 sessions, fast done.
 5. **Day 0 baseline, then 30/60/90 milestones:** weight and waist (and
    HbA1c if they're getting labs, at Day 0 and Day 90). The ramp is light
