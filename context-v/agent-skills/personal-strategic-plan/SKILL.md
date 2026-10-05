@@ -25,6 +25,7 @@ repo root (on GitHub). If you can't read a bundled file, fetch it from
 | [[references/PSP-Folder-and-Modes.md]] | The member's one PSP folder, and how to work in each setup: an assistant that can write files, a Claude/ChatGPT Project, or a single chat. Read on first run. |
 | [[references/Weekly-Cadence.md]] | The cohort's Sunday-to-Saturday clock and the Sunday session, step by step. |
 | [[references/Weekly-Form.md]] | Every question on the program's weekly form, and where each answer comes from. |
+| [[references/Dashboard-Dataviz.md]] | **Read before building any dashboard.** Guidelines for showing process habits and outcome progress, built around what works for the member; our recommended setup when they have no preference. |
 | [[references/Outcome-Progress.md]] | How far each outcome has come and where its rate is heading, between checkpoints. |
 | `references/dashboard-guidelines.md` | How to build a tracking dashboard: the `tracker.yaml` + weekly log format, day → week → Day 30/60/90 rollups, status rules, and the detailed and summary views. |
 | `templates/tracker.yaml`, `templates/log-week.yaml` | Starting points for a person's tracker and one week's log. |
@@ -196,6 +197,15 @@ editor, can update: `tracker.yaml` (the plan as numbers) and one
 When someone wants to see their progress, or share it with a coach or the
 cohort:
 
+0. **Work out what works for them first** (see
+   [[references/Dashboard-Dataviz.md]]). Everything below is guidelines for
+   showing two things, the process habits and progress toward the outcomes,
+   not a format to impose. Ask how they already keep track, how often
+   they'll really log, and who will see it, and adapt: a sheet, an
+   artifact, a site, a paper grid. If they have no strong preference, say so
+   and recommend this toolkit's setup firmly: daily, weekly, biweekly, and
+   monthly habits, each with a base and a stretch (counts, checks, and
+   limits), and outcomes read every Sunday against a goal.
 1. Turn their plan into `tracker.yaml` (`templates/tracker.yaml`): each
    goal's "What counts" list becomes its process habits, with per-week base
    and stretch (`base:` / `stretch:`; for a "no more than" habit the limit
