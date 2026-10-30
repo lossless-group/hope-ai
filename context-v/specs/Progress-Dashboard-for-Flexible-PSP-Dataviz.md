@@ -22,6 +22,7 @@ tags:
   - Data-Visualization
   - Weekly-Questionnaire
 status: In-Discussion
+type: Specs
 ---
 
 # Progress Dashboard for Flexible PSP Dataviz
