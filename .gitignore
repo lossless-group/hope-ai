@@ -5,3 +5,8 @@ context-v/extra/
 *_20[0-9][0-9]-[0-9][0-9]-[0-9][0-9].html
 *_20[0-9][0-9]-[0-9][0-9]-[0-9][0-9].docx
 dist/
+
+# Local secrets (this repo is public)
+.env
+.env.*
+!.env.example
