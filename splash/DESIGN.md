@@ -121,6 +121,20 @@ sun anchored near the bottom. To change copy or layout, edit
 `scripts/og-template.html` and run `scripts/render-og.sh` (all formats) or
 `scripts/render-og.sh BannerTall` (one).
 
+### Trademark pack
+
+All under `public/brand/`, every piece outlined to paths: an `<img>` cannot
+load web fonts, so live text renders in the fallback face.
+
+| Piece | File | Notes |
+|---|---|---|
+| appIcon | `appIcon__Hope-AI.svg` | The sun-over-horizon on its cream tile; same art as `public/favicon.svg` |
+| favicon | `../favicon.svg` | |
+| wordmark | `wordmark__Hope-AI.svg` | "hope" in Instrument Serif Italic, ".ai" in JetBrains Mono 500, ink `#2a1f1a` / ember `#c95a2c` |
+| trademark | `trademark__Hope-AI.svg` | Sun mark + wordmark. `hope-ai-logotype.svg` is the same file under its older name |
+
+Light-only: the brand has no dark-mode lockup yet.
+
 ## Do's and Don'ts
 
 - Do keep the paste-into-Claude message as the hero's primary action.
