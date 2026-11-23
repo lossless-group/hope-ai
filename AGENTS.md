@@ -77,7 +77,9 @@ unless asked.
   `bash /Users/mpstaton/code/lossless-monorepo/context-v/agent-skills/sync-skills-symlinks.sh`
 - **Python: `uv`**, not plain `pip`, if a script ever grows dependencies.
 
-## Branch tier model
+## Branches and shipping
 
-`development` → `main` → `master`, as everywhere in the tree. The parent
-`ai-labs` tracks this submodule on `main`.
+Same as the root `AGENTS.md`: when work is done, commit it, merge it, push, and bring
+`development`, `main`, `master` (and any working branch) to the same commit. Bump parent
+submodule pointers whenever a child moves, and sync the parents the same way.
+
